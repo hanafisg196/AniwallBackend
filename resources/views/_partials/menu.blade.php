@@ -1,4 +1,3 @@
-
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
@@ -17,9 +16,9 @@
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class="nav-item"><a class="d-flex align-items-center"
-                href="/home"><i data-feather="home">
-            </i><span class="menu-title text-truncate" data-i18n="Home">Dashboard</span></a>
+            <li class="nav-item"><a class="d-flex align-items-center" href="/dashboard">
+                <i data-feather="home"></i>
+                <span class="menu-title text-truncate" data-i18n="Home">Dashboard</span></a>
             </li>
             <li class="nav-item"><a class="d-flex align-items-center"
                 href="/categories"><i data-feather="tag">

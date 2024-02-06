@@ -1,0 +1,347 @@
+@extends('_partials.content')
+@section('content')
+
+
+<div class="card">
+    <div class="card-header border-bottom p-1">
+        <div class="head-label"></div>
+        <div class="dt-action-buttons text-end">
+            <div class="dt-buttons d-inline-flex">
+                <button type="button" class="btn btn-gradient-primary pull-right" data-bs-toggle="modal"
+                    data-bs-target="#addModal"><span><i data-feather='plus'></i> Add Wallpaper</span></button>
+            </div>
+        </div>
+    </div>
+    <div class="card-body mt-2">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="card border-0 text-white">
+                    
+                    <img class="card-img" 
+                    src="https://mfiles.alphacoders.com/100/1008716.png"
+                    alt="Card image" height="300">
+
+                    <div class="card-img-overlay bg-overlay">
+                        <div class="btn-group">
+                            <a type="button" class="btn btn-icon btn-warning waves-effect waves-float waves-light"
+                                data-bs-toggle="modal" data-bs-target="#editModal">
+                                <span><i data-feather='edit-2'></i></span>
+                            </a>
+                           
+                            <a type="button" class="btn btn-icon btn-danger waves-effect waves-float waves-light"
+                                data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                data-href="">
+                                <span><i data-feather='trash-2'></i></span>
+                            </a>
+                          
+                            <a type="button" href=""
+                                class="btn btn-icon btn-primary waves-effect waves-float waves-light">
+                                <span><i data-feather='bell'></i></span>
+                            </a>
+                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+   
+</div>
+
+
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addModalTitle">Add Wallpaper</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class="auth-login-form mt-2" method="post"
+                enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-1">
+                                        <label for="cid">Wallpaper Categories</label>
+                                        <select name="cid" id="cid" class="form-select">
+                                         
+                                        </select>
+                                    </div>
+                                    <div class="mb-1">
+                                        <label for="type">Wallpaper Type</label>
+                                        <select name="type" id="type" class="form-select"
+                                        onchange="onTypeChange(this.value)">
+                                            <option value="IMAGE">IMAGE</option>
+                                            <option value="VIDEO">VIDEO</option>
+                                          
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-1">
+                                        <label for="premium">Wallpaper Premium</label>
+                                        <select name="premium" id="premium" class="form-select">
+                                            <option value="0">FREE</option>
+                                            <option value="1">PREMIUM</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-1">
+                                        <label for="resource">Resource Type</label>
+                                        <select name="resource" id="resource" class="form-select"
+                                            onchange="onResourceChange(this.value)">
+                                            <option value="URL">URL</option>
+                                            <option value="UPLOAD">UPLOAD</option>
+                                      
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-1" id="wallpaperUrl">
+                                <label for="image" id="wallpaper_url_label_id">Wallpaper Url</label>
+                                <input type="text" class="form-control" id="image" name="image"
+                                    placeholder="mp4/gif/jpg/png">
+                            </div>
+                            <div class="mb-1" id="wallpaperUrl2" style="display: none">
+                                <label for="image2">Thumbnail Url</label>
+                                <input type="text" class="form-control" id="image2" name="image2"
+                                    placeholder="mp4/gif/jpg/png">
+                            </div>
+                            <div class="mb-1" id="wallpaperFile" style="display: none">
+                                <label for="imageFile" id="wallpaper_file_label_id">Wallpaper</label>
+                                <input class="form-control" name="imageFile" id="imageFile" type="file" multiple>
+                            </div>
+                            <div class="mb-1" id="wallpaperFile2" style="display: none">
+                                <label for="imageFile2">Thumbnail</label>
+                                <input class="form-control" name="imageFile" id="imageFile2" type="file" multiple>
+                            </div>
+                            <div class="mb-1" id="wallpaperMultiple" style="display: none">
+                                <label for="multipleurl">Wallpaper Image - one per line</label>
+                                <textarea class="form-control" name="multipleurl" id="multipleurl"
+                                    style="height: 300px"></textarea>
+                            </div>
+                            <div class="mb-1">
+                                <label class="form-label" for="tags">Tags : </label>
+                                
+                              
+                                <label class="color-label">
+                                    <span class="color-label-checkbox">
+                                        <input type="checkbox" id="tags" name="tags">
+                                    </span><span class="color-label-text">Tags</span>
+                                </label>
+                               
+                            </div>
+                            <div class="mb-1">
+                                <label class="form-label" for="tags">Color : </label>
+                               
+                               
+                                <label class="color-label" style="background">
+                                    <span class="color-label-checkbox">
+                                        <input type="checkbox" id="color" name="color">
+                                    </span><span class="color-label-text">Color</span>
+                                </label>
+                          
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    
+                    <button class="btn btn-gradient-primary float-end" type="submit">Submit</button>
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{{-- editModal --}}
+
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="addModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addModalTitle">Add Wallpaper</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class="auth-login-form mt-2" method="post"
+                enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-1">
+                                        <label for="cid">Wallpaper Categories</label>
+                                        <select name="cid" id="cid" class="form-select">
+                                         
+                                        </select>
+                                    </div>
+                                    <div class="mb-1">
+                                        <label for="type">Wallpaper Type</label>
+                                        <select name="type" id="type" class="form-select"
+                                        onchange="onResourceChange(this.value)">
+                                            <option value="IMAGE">IMAGE</option>
+                                            <option value="VIDEO">VIDEO</option>
+                                          
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-1">
+                                        <label for="premium">Wallpaper Premium</label>
+                                        <select name="premium" id="premium" class="form-select">
+                                            <option value="0">FREE</option>
+                                            <option value="1">PREMIUM</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-1">
+                                        <label for="resource">Resource Type</label>
+                                        <select name="resource" id="resource" class="form-select"
+                                            onchange="onResourceChange(this.value)">
+                                            <option value="URL">URL</option>
+                                            <option value="UPLOAD">UPLOAD</option>
+                                      
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-1" id="wallpaperUrl">
+                                <label for="image" id="wallpaper_url_label_id">Wallpaper Url</label>
+                                <input type="text" class="form-control" id="image" name="image"
+                                    placeholder="mp4/gif/jpg/png">
+                            </div>
+                            <div class="mb-1" id="wallpaperUrl2" style="display: block">
+                                <label for="image2">Thumbnail Url</label>
+                                <input type="text" class="form-control" id="image2" name="image2"
+                                    placeholder="mp4/gif/jpg/png">
+                            </div>
+                            <div class="mb-1" id="wallpaperFile" style="display: none">
+                                <label for="imageFile" id="wallpaper_file_label_id">Thumbnail</label>
+                                <input class="form-control" name="imageFile" id="imageFile" type="file" multiple>
+                            </div>
+                            <div class="mb-1" id="wallpaperFile2" style="display: none">
+                                <label for="imageFile2">Video</label>
+                                <input class="form-control" name="imageFile" id="imageFile2" type="file" multiple>
+                            </div>
+                            <div class="mb-1" id="wallpaperMultiple" style="display: none">
+                                <label for="multipleurl">Wallpaper Image - one per line</label>
+                                <textarea class="form-control" name="multipleurl" id="multipleurl"
+                                    style="height: 300px"></textarea>
+                            </div>
+                            <div class="mb-1">
+                                <label class="form-label" for="tags">Tags : </label>
+                                
+                              
+                                <label class="color-label">
+                                    <span class="color-label-checkbox">
+                                        <input type="checkbox" id="tags" name="tags">
+                                    </span><span class="color-label-text">Tags</span>
+                                </label>
+                               
+                            </div>
+                            <div class="mb-1">
+                                <label class="form-label" for="tags">Color : </label>
+                               
+                               
+                                <label class="color-label" style="background">
+                                    <span class="color-label-checkbox">
+                                        <input type="checkbox" id="color" name="color">
+                                    </span><span class="color-label-text">Color</span>
+                                </label>
+                          
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    
+                    <button class="btn btn-gradient-primary float-end" type="submit">Submit</button>
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('script')
+
+<script src="{{asset('plugins/app-assets/js/scripts/forms/form-select2.js')}}"></script>
+<script>
+$(document).ready(function() {
+    $(".vimeo").on("mouseover", function(event) {
+        this.play();
+
+    }).on('mouseout', function(event) {
+        this.pause();
+    });
+
+    $('#DataTable').DataTable({
+        responsive: true,
+        order: [
+            [1, "desc"]
+        ]
+    });
+    $('.select2').select2();
+    $('.select-color').select2();
+});
+
+
+
+
+
+
+function onResourceChange($value) {
+    var typeSelect = document.getElementById("addModal").querySelector("#type");
+    var resourceSelect = document.getElementById("addModal").querySelector("#resource");
+    var selectedType = typeSelect.options[typeSelect.selectedIndex].text;
+
+    if ($value === 'UPLOAD') {
+        document.getElementById('wallpaperUrl2').style.display = 'none';
+        document.getElementById('wallpaperUrl').style.display = 'none';
+        document.getElementById('wallpaperFile').style.display = 'block';
+        document.getElementById('wallpaperFile2').style.display = 'block';
+
+        if (selectedType === 'IMAGE') {
+            document.getElementById('wallpaperFile2').style.display = 'none';
+        } else if(selectedType === 'IMAGE'){
+            document.getElementById('wallpaperFile').style.display = 'block';
+            document.getElementById('wallpaperFile2').style.display = 'block';
+        }
+
+    } else if ($value === 'URL') {
+        document.getElementById('wallpaperUrl').style.display = 'block';
+        document.getElementById('wallpaperUrl2').style.display = 'block';
+        document.getElementById('wallpaperFile').style.display = 'none';
+        document.getElementById('wallpaperFile2').style.display = 'none';
+
+        if (selectedType === 'IMAGE') {
+            document.getElementById('wallpaperUrl2').style.display = 'none';
+        } else {
+            document.getElementById('wallpaperUrl').style.display = 'block';
+            document.getElementById('wallpaperUrl2').style.display = 'block';
+        }
+    }
+}
+
+
+
+function onResourceChangeEdit($value, $id) {
+    if ($value === 'UPLOAD') {
+        document.getElementById('wallpaperUrlEdit' + $id).style.display = 'none';
+        document.getElementById('wallpaperFileEdit' + $id).style.display = 'block';
+    } else {
+        document.getElementById('wallpaperUrlEdit' + $id).style.display = 'block'
+        document.getElementById('wallpaperFileEdit' + $id).style.display = 'none';
+    }
+}
+</script>
+
+@endsection

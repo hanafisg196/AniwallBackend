@@ -24,35 +24,43 @@
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class="nav-item"><a class="d-flex align-items-center"
-                href="/home"><i data-feather="home">
+            <li class="nav-item {{ request()->segment(1)=='dashboard'? 'active' : '' }}">
+                <a class="d-flex align-items-center"
+                href="/dashboard"><i data-feather="home">
             </i><span class="menu-title text-truncate" data-i18n="Home">Dashboard</span></a>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center"
+            <li class=" nav-item {{ request()->segment(1)=='categories'? 'active' : '' }}">
+                <a class="d-flex align-items-center"
                 href="/categories"><i data-feather="tag">
             </i><span class="menu-title text-truncate" data-i18n="appsetting">Categories</span></a>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center"
+            <li class=" nav-item {{ request()->segment(1)=='wallpaper'? 'active' : '' }}">
+                <a class="d-flex align-items-center"
                 href="/wallpaper"><i data-feather="image">
             </i><span class="menu-title text-truncate" data-i18n="appsetting">Wallpaper</span></a>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center"
+            <li class=" nav-item {{ request()->segment(1)=='color'? 'active' : '' }}">
+                <a class="d-flex align-items-center"
                  href="/color"><i data-feather="figma">
              </i><span class="menu-title text-truncate" data-i18n="appsetting">Color</span></a>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center"
+            <li class=" nav-item {{ request()->segment(1)=='tags'? 'active' : '' }}">
+                <a class="d-flex align-items-center"
                 href="/tags"><i data-feather="hash">
             </i><span class="menu-title text-truncate" data-i18n="appsetting">Tags</span></a>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center"
+            <li class=" nav-item {{ request()->segment(1)=='notification'? 'active' : '' }}">
+                <a class="d-flex align-items-center"
                 href="/notification"><i data-feather="bell">
             </i><span class="menu-title text-truncate" data-i18n="appsetting">Notification</span></a>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center"
+            <li class=" nav-item {{ request()->segment(1)=='adsmanager'? 'active' : '' }}">
+                <a class="d-flex align-items-center"
                 href="/adsmanager"><i data-feather="dollar-sign">
             </i><span class="menu-title text-truncate" data-i18n="appsetting">Ads Manager</span></a>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center"
+            <li class=" nav-item {{ request()->segment(1)=='appsetting'? 'active' : '' }}">
+                <a class="d-flex align-items-center"
              href="/appsetting"><i data-feather="settings">
             </i><span class="menu-title text-truncate" data-i18n="appsetting">Setting</span></a>
             </li>
