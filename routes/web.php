@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdsmanagerController;
 use App\Http\Controllers\AppsettingController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\DasboardController;
 use App\Http\Controllers\LoginController;
@@ -37,8 +38,11 @@ Route::post('/login', [LoginController::class, 'doLogin'] )->middleware('guest')
 Route::middleware(AdminMiddleware::class)->group(function () {
     Route::get('/dashboard', [DasboardController::class, 'index'] )->name('dashboard');
     Route::post('/logout', [LoginController::class, 'doLogout'] );
+    Route::get('/categories', [CategoryController::class, 'index'] );
+    Route::post('/categories/insert', [CategoryController::class, 'addCategory'] );
+    Route::post('/categories/edit/{id}', [CategoryController::class, 'UpdateCategory'] );
+    Route::post('/categories/delete/{id}', [CategoryController::class, 'deleteCategory'] );
     Route::get('/wallpaper', [WallpaperController::class, 'index'] );
-    Route::get('/categories', [CategoriesController::class, 'index'] );
     Route::get('/color', [ColorController::class, 'index'] );
     Route::get('/tags', [TagsController::class, 'index'] );
     Route::get('/notification', [NotificationController::class, 'index'] );

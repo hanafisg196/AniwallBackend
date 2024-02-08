@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('wallpapers', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 300);
-            $table->string('thumbnail', 300);
-            $table->string('type', 20);
-            $table->string('size', 50);
-            $table->integer('view');
-            $table->integer('download');
+            $table->string('name', 100);
+            $table->string('image', 300);
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('wallpapers');
+        Schema::dropIfExists('categories');
     }
 };
