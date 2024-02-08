@@ -15,7 +15,7 @@ abstract class TestCase extends BaseTestCase
         parent::setUp();
         DB::delete("delete from users");
         DB::delete("delete from categories");
-        // DB::delete("delete from wallpapers");
+        DB::delete("delete from wallpapers");
 
     }
 }

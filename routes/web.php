@@ -43,6 +43,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::post('/categories/edit/{id}', [CategoryController::class, 'UpdateCategory'] );
     Route::post('/categories/delete/{id}', [CategoryController::class, 'deleteCategory'] );
     Route::get('/wallpaper', [WallpaperController::class, 'index'] );
+    Route::post('/wallpaper', [WallpaperController::class, 'addWallpaper'] );
     Route::get('/color', [ColorController::class, 'index'] );
     Route::get('/tags', [TagsController::class, 'index'] );
     Route::get('/notification', [NotificationController::class, 'index'] );

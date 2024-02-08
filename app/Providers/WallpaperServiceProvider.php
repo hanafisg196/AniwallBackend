@@ -2,26 +2,28 @@
 
 namespace App\Providers;
 
-use App\Services\CategoryService;
-use App\Services\Impl\CategoryServiceImpl;
+use App\Services\Impl\WallpaperServiceImpl;
+use App\Services\WallpaperService;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 
-class CategoryServiceProvider extends ServiceProvider implements DeferrableProvider
+class WallpaperServiceProvider extends ServiceProvider implements DeferrableProvider
 {
 
     public array $singletons = [
 
-        CategoryService::class => CategoryServiceImpl::class
+        WallpaperService::class => WallpaperServiceImpl::class
         
     ];
 
     public function provides() : array
     {
         return [
-            CategoryService::class,
+            WallpaperService::class,
         ];
     }
+
+
 
     /**
      * Register services.

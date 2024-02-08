@@ -24,7 +24,7 @@ class CategoryController extends Controller
 
          $request->validate([
          'name' =>'required',
-         'image' =>'image|file|max:2048|',
+         'image' =>'image|file|mimes:png,jpg|max:2048|',
          ]);
 
       $this->categoryService->createCategory($request);
@@ -37,7 +37,7 @@ class CategoryController extends Controller
    {
          $request->validate([
          'name' =>'required',
-         'image' =>'image|file|mimes:png,jpg,mp4|max:5120|',
+         'image' =>'image|file|mimes:png,jpg|max:2048|',
          ]);
 
       $this->categoryService->editCategory($request, $id);

@@ -11,7 +11,7 @@ class Category extends Model
     use HasFactory;
 
     protected $primaryKey = 'id';
-    protected $guarded =['id'];
+    protected $guarded = ['id'];
 
     public function wallpapers()
     {

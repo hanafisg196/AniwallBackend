@@ -12,7 +12,7 @@ class Wallpaper extends Model
     protected $primaryKey = 'id';
     protected $guarded =['id'];
 
-    public function categories()
+    public function category()
     {
         return $this->belongsTo(Category::class, "cat_id", "id");
     }
