@@ -19,7 +19,7 @@
                     @foreach ($data as $item)
                         
                     <img class="card-img"
-                        src="{{asset('thumbs/'.$item->thumbnail)}}"
+                        src="{{asset('storage/'. $item->thumbnail)}}"
                     alt="Card image" height="300">
 
                     <div class="card-img-overlay bg-overlay">
@@ -39,6 +39,11 @@
                                 class="btn btn-icon btn-primary waves-effect waves-float waves-light">
                                 <span><i data-feather='bell'></i></span>
                             </a>
+                            @if (pathinfo($item->type, PATHINFO_EXTENSION) == 'mp4')
+                            <a type="button" class="btn btn-icon btn-success waves-effect waves-float waves-light">
+                                <span><i data-feather='video'></i></span>
+                            </a>
+                             @endif
                           
                         </div>
                     </div>
@@ -90,13 +95,15 @@
                             </div>
                            
                          
-                            <div class="mb-1" id="type">
-                                <label for="type" id="wallpaper_file_label_id">Wallpaper</label>
-                                <input class="form-control" name="type" id="type" type="file" multiple>
-                            </div>
+                           
                             <div class="mb-1" id="wallpaperFile2">
                                 <label for="thumbnail">Thumbnail</label>
                                 <input class="form-control" name="thumbnail" id="thumbnail" type="file" multiple>
+                            </div>
+
+                            <div class="mb-1" id="type">
+                                <label for="type" id="wallpaper_file_label_id">Wallpaper</label>
+                                <input class="form-control" name="type" id="type" type="file" multiple>
                             </div>
                           
                         
