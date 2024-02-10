@@ -30,8 +30,8 @@ class GenerateThumbnailVideo implements ShouldQueue
     {
   
         $thumbPath = 'thumbs/';
-        $fileName = 'thumb';
-        $thumbs = $thumbPath . hash('sha256', $fileName) . '.jpg';
+        $fileName = $this->wallpaper->type;
+        $thumbs = $thumbPath . hash('sha256', $fileName) . '.webp';
         
        
         FFMpeg::fromDisk('public')
