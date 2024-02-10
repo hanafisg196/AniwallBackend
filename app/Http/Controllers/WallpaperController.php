@@ -17,15 +17,15 @@ class WallpaperController extends Controller
     {
         $data = $this->wallpaperService->getWallpapers();
         $category = $this->wallpaperService->getCategories();
-        // return json_encode($data);
-        return view('dashboard.wallpaper')->with(['data' => $data, 'category' => $category]);
+        return view('dashboard.wallpaper')->with([
+            'data' => $data, 'category' => $category
+        ]);
     }
 
     public function addWallpaper(Request $request)
     {
         $request->validate([
             'title' =>'required',
-            'thumbnail' =>'required',
             'type' =>'required',
             'cat_id' =>'required',
             

@@ -18,7 +18,7 @@ class CategoryServiceImpl implements CategoryService {
     {
       
       $name = $request->input('name');
-      $image = $request->file('image')->store('image');
+      $image = $request->file('image')->store('images');
     
         $category = new Category([
             'name' => $name,
