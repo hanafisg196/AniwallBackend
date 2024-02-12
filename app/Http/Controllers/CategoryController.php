@@ -13,6 +13,7 @@ class CategoryController extends Controller
    {
       $this->categoryService = $categoryService;
    }
+   
    public function index()
    {
       $data = $this->categoryService->getCategories();
@@ -21,14 +22,13 @@ class CategoryController extends Controller
 
    public function addCategory(Request $request)
    {
-
          $request->validate([
          'name' =>'required',
-         'image' =>'image|file|mimes:png,jpg|max:2048|',
+         'image' =>'required|image|file|mimes:png,jpg|max:1024|',
          ]);
 
       $this->categoryService->createCategory($request);
-      return redirect('/categories')->with('success','Successfully added category');
+      return redirect()->back()->with('success','Successfully added category');
    }
 
 
@@ -37,19 +37,19 @@ class CategoryController extends Controller
    {
          $request->validate([
          'name' =>'required',
-         'image' =>'image|file|mimes:png,jpg|max:2048|',
+         'image' =>'image|file|mimes:png,jpg|max:1024|',
          ]);
 
       $this->categoryService->editCategory($request, $id);
 
-      return redirect('/categories')->with('success','Successfully updated category');
+      return redirect()->back()->with('success','Successfully updated category');
    }
 
 
    public function deleteCategory(String $id)
    {
       $this->categoryService->deleteCategory($id);
-      return redirect('/categories')->with('success','Successfully deleted category');
+      return redirect()->back()->with('success','Successfully deleted category');
    }
 
 

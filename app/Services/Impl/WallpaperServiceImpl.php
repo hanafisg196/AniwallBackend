@@ -13,9 +13,18 @@ use Intervention\Image\Facades\Image;
 
 class WallpaperServiceImpl implements WallpaperService
 {
+
+ 
     public function getWallpapers()
     {
-        return Wallpaper::paginate(10);
+        return Wallpaper::orderBy('id', 'desc')
+        ->where('review', '=', 0)
+        ->paginate(10);
+    }
+
+    public function getWallpapersById($id)
+    {
+        return Wallpaper::find($id);
     }
 
     public function getCategories()
@@ -32,10 +41,10 @@ class WallpaperServiceImpl implements WallpaperService
         return $thumbnailPath;
        
     }
-
     public function createWallpaper(Request $request)
     {
         $title = $request->input('title');
+        $resolution = $request->input('resolution');
         $cat_id = $request->input('cat_id');
         $type = $request->file('type');
 
@@ -48,6 +57,7 @@ class WallpaperServiceImpl implements WallpaperService
                 'title' => $title,
                 'thumbnail'=> $thumbnailFilename,
                 'type' => $path,
+                'resolution' => $resolution,
                 'cat_id' => $cat_id,
                 'user_id' => auth()->user()->id
               
@@ -81,6 +91,63 @@ class WallpaperServiceImpl implements WallpaperService
         
  
     }
-
+    public function editWallpaper(Request $request, $id)
+    {
+        $wallpaper = Wallpaper::find($id);
+        $title = $request->input('title');
+        $cat_id = $request->input('cat_id');
+        $resolution = $request->input('resolution');
+       
+        if($request->hasFile('type') && $request->file('type')->isValid())
+        {
+            // Delete the old type file if it exists
+            if ($wallpaper->type) {
+                Storage::delete($wallpaper->type);
+            }
+             // Store the new type file
+            $type = $request->file('type');
+            $path = ($type->getClientOriginalExtension() == 'mp4') ?
+            $type->store('videos') : $type->store('images');
+            
+        } else{
+            // If no new thumbnail file is provided, use the existing path
+            $path = $wallpaper->type;
+        }
+    
+        if ($request->hasFile('thumbnail') && $request->file('thumbnail')->isValid()) {
+     
+            if ($wallpaper->thumbnail) {
+                Storage::delete($wallpaper->thumbnail);
+            }
+    
+           
+            $thumb = $request->file('thumbnail');
+            $thumbPath = $thumb->store('thumbs');
+        } else {
+          
+            $thumbPath = $wallpaper->thumbnail;
+        }
+        
+        $wallpaper->title = $title;
+        $wallpaper->cat_id = $cat_id;
+        $wallpaper->thumbnail = $thumbPath;
+        $wallpaper->resolution = $resolution;
+        $wallpaper->type = $path;
+        $wallpaper->update();
 
     }
+    public function deleteWallpaper( $id)
+    {
+        $wallpaper = Wallpaper::find($id);
+        if($wallpaper->type)
+        {
+            Storage::delete($wallpaper->type);
+        }
+        if ($wallpaper->thumbnail)
+        {
+            Storage::delete($wallpaper->thumbnail);
+        }
+        $wallpaper->delete();
+    }
+
+}

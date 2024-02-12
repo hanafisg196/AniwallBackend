@@ -2,12 +2,12 @@
 
 use App\Http\Controllers\AdsmanagerController;
 use App\Http\Controllers\AppsettingController;
-use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\DasboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\WallpaperController;
 use App\Http\Middleware\AdminMiddleware;
@@ -44,12 +44,17 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::post('/categories/delete/{id}', [CategoryController::class, 'deleteCategory'] );
     Route::get('/wallpaper', [WallpaperController::class, 'index'] );
     Route::post('/wallpaper', [WallpaperController::class, 'addWallpaper'] );
+    Route::get('/wallpaper/view/{id}', [WallpaperController::class, 'getDataById'] );
+    Route::post('/wallpaper/edit/{id}', [WallpaperController::class, 'UpdateWallpaper'] );
+    Route::post('/wallpaper/delete/{id}', [WallpaperController::class, 'DeleteWallpaper'] );
+    Route::get('/review', [ReviewController::class, 'index'] );
+    Route::post('/review/accept/{id}', [ReviewController::class, 'accept'] );
+    Route::post('/review/delete/{id}', [ReviewController::class, 'deleteReview'] );
     Route::get('/color', [ColorController::class, 'index'] );
     Route::get('/tags', [TagsController::class, 'index'] );
     Route::get('/notification', [NotificationController::class, 'index'] );
     Route::get('/adsmanager', [AdsmanagerController::class, 'index'] );
     Route::get('/appsetting', [AppsettingController::class, 'index'] );
    
-    
    
 });

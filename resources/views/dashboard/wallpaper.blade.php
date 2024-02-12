@@ -1,3 +1,4 @@
+
 @extends('_partials.content')
 @section('content')
 
@@ -14,6 +15,7 @@
     </div>
     <div class="card-body mt-2">
         <div class="row">
+            @include('_partials.alert')
             @foreach ($data as $item)
             <div class="col-md-2">
                 <div class="card border-0 text-white">
@@ -25,16 +27,21 @@
 
                     <div class="card-img-overlay bg-overlay">
                         <div class="btn-group">
-                            <a type="button" class="btn btn-icon btn-warning waves-effect waves-float waves-light"
-                                data-bs-toggle="modal" data-bs-target="#editModal">
+                            <a type="button" class="btn btn-icon btn-warning waves-effect
+                                waves-float waves-light"
+                                 href="/wallpaper/view/{{ $item->id }}">
                                 <span><i data-feather='edit-2'></i></span>
                             </a>
                            
-                            <a type="button" class="btn btn-icon btn-danger waves-effect waves-float waves-light"
-                                data-bs-toggle="modal" data-bs-target="#deleteModal"
-                                data-href="">
-                                <span><i data-feather='trash-2'></i></span>
-                            </a>
+                            <form action="/wallpaper/delete/{{ $item->id }}" method="post">
+                                @csrf
+                            <button type="submit" class="btn btn-icon btn-danger
+                                waves-effect waves-float waves-light"
+                                data-bs-toggle="tooltip"
+                                 data-bs-placement="top">
+                            <span><i data-feather='trash-2'></i></span>
+                            </button>
+                           </form>
                           
                             <a type="button" href=""
                                 class="btn btn-icon btn-primary waves-effect waves-float waves-light">
@@ -73,11 +80,12 @@
                 <div class="modal-body">
                     <div class="row">
 
-                        <div class="mb-1" id="wallpaperUrl2" style="display: block">
+                        <div class="mb-1" id="Title" style="display: block">
                             <label for="title">Title</label>
                             <input type="text" class="form-control" id="title" name="title"
                                 placeholder="title">
                         </div>
+
                         <div class="col-md-12">
                             <div class="row">
                                 
@@ -97,9 +105,15 @@
                            
                             <div class="mb-1" id="type">
                                 <label for="type" id="wallpaper_file_label_id">Wallpaper</label>
-                                <input class="form-control" name="type" id="type" type="file" multiple>
+                                <input class="form-control"  name="type" id="type" type="file" multiple>
                             </div>
                           
+
+                            <div class="mb-1" id="resolution" style="display: block">
+                                <label for="resolution">Resolution</label>
+                                <input type="text" class="form-control" id="resolution" name="resolution"
+                                    placeholder="Resolution">
+                            </div>
                         
                         </div>
                     </div>
@@ -114,61 +128,59 @@
     </div>
 </div>
 
-
-{{-- editModal --}}
-
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="addModalTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addModalTitle">Add Wallpaper</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form class="auth-login-form mt-2" method="post"
-                enctype="multipart/form-data">
-                @csrf
-                <div class="modal-body">
-                    <div class="row">
-
-                        <div class="mb-1" id="wallpaperUrl2" style="display: block">
-                            <label for="title">Title</label>
-                            <input type="text" class="form-control" id="title" name="title"
-                                placeholder="title">
-                        </div>
-                        <div class="col-md-12">
-                            <div class="row">
-                                
-                                <div class="col-md-6">
-                                    <div class="mb-1">
-                                        <label for="cat_id">Category</label>
-                                        <select name="cat_id" id="cat_id" class="form-control">
-                                            @foreach ($category as $item)
-                                            <option value="{{ $item->id }}">
-                                                {{ $item->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                 
-                                </div>
-                            </div>
-                           
-                            <div class="mb-1" id="type">
-                                <label for="type" id="wallpaper_file_label_id">Wallpaper</label>
-                                <input class="form-control" name="type" id="type" type="file" multiple>
-                            </div>
-                          
-                        
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    
-                    <button class="btn btn-gradient-primary float-end" type="submit">Submit</button>
-                    
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 @endsection
+@section('script')
+<script>
+// function previewThumbnail() {
+//              const thumb = document.querySelector('#thumbnail');
+//              const thumbPreview = document.querySelector('.thumb-preview');
+//              // Display the image preview container
+//              thumbPreview.style.display = 'block';
+//              const oFReader = new FileReader();
+//              oFReader.readAsDataURL(thumb.files[0]);
+//              oFReader.onload = function(oFREvent) {
+//              thumbPreview.src = oFREvent.target.result;
+//              };
+//            }
+// function previewImage() {
+//         const imageInput = document.querySelector('#type');
+//         const previewContainer = document.querySelector('.image-preview');
+//         const videoContainer = document.querySelector('.video-preview');
 
+//         // Reset previous previews
+//         previewContainer.style.display = 'none';
+//         videoContainer.style.display = 'none';
+
+//         const file = imageInput.files[0];
+
+//         if (file) {
+//             const fileExtension = file.name.split('.').pop().toLowerCase();
+
+//             if (['jpg', 'jpeg', 'png', 'gif'].includes(fileExtension)) {
+//                 // Display image preview
+//                 previewContainer.style.display = 'block';
+//                 const reader = new FileReader();
+
+//                 reader.readAsDataURL(file);
+//                 reader.onload = function (event) {
+//                     previewContainer.src = event.target.result;
+//                 };
+//             } else if (fileExtension === 'mp4') {
+//                 // Display video preview
+//                 videoContainer.style.display = 'block';
+//                 const videoReader = new FileReader();
+
+//                 videoReader.readAsDataURL(file);
+//                 videoReader.onload = function (event) {
+//                     videoContainer.src = event.target.result;
+//                 };
+//             } else {
+//                 // Handle unsupported file types if needed
+//                 alert('Unsupported file type');
+//             }
+//         }
+//     }
+
+
+</script>
+@endsection

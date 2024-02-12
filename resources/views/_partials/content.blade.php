@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html class="loading" lang="en" data-textdirection="ltr">
+<html class="loading" lang="en" 
+data-textdirection="ltr">
 @include('_partials/head')
 
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click"
@@ -39,6 +40,13 @@
                 href="/wallpaper"><i data-feather="image">
             </i><span class="menu-title text-truncate" data-i18n="appsetting">Wallpaper</span></a>
             </li>
+
+            <li class=" nav-item {{ request()->segment(1)=='review'? 'active' : '' }}">
+                <a class="d-flex align-items-center"
+                href="/review"><i data-feather="check-square">
+            </i><span class="menu-title text-truncate" data-i18n="appsetting">Review</span></a>
+            </li>
+
             <li class=" nav-item {{ request()->segment(1)=='color'? 'active' : '' }}">
                 <a class="d-flex align-items-center"
                  href="/color"><i data-feather="figma">

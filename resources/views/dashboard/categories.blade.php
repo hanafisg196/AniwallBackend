@@ -81,7 +81,7 @@
                                                 <input class="form-control @error('name') is-invalid @enderror"
                                                 placeholder="Enter Categories Name"
                                                 name="name" type="text"
-                                                value="{{ $item->name }}" id="name" required>
+                                                value=" {{old('name', $item->name )}} " id="name" required>
                                                 @error('name')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -92,7 +92,7 @@
                                                 <label for="image">Image</label>
                                                 <input class="form-control @error('image') is-invalid @enderror"
                                                 name="image"
-                                                value="{{ $item->image }}" id="image" type="file" required>
+                                                value="{{ old('image',$item->image)}}" id="image" type="file">
 
                                                 @error('image')
                                                 <div class="invalid-feedback">

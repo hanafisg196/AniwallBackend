@@ -73,7 +73,9 @@
                                 data-bs-toggle="tooltip"
                                 data-bs-placement="top"
                                 title="Disable On Demo"
-                                class="btn btn-gradient-primary float-end">Submit</button>
+                                class="btn btn-gradient-primary float-end">
+                                Submit
+                        </button>
                    
                 </div>
             </form>

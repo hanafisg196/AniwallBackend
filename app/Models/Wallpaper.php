@@ -21,4 +21,9 @@ class Wallpaper extends Model
     {
         return $this->belongsTo(User::class, "user_id", "id");
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, "wallpaper_id", "id");
+    }
 }

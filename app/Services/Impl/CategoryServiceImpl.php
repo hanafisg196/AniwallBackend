@@ -20,12 +20,12 @@ class CategoryServiceImpl implements CategoryService {
       $name = $request->input('name');
       $image = $request->file('image')->store('images');
     
-        $category = new Category([
+      $category = new Category([
             'name' => $name,
             'image' => $image,
-        ]);
+      ]);
 
-        $category->save();
+      $category->save();
 
        
     }
@@ -34,26 +34,40 @@ class CategoryServiceImpl implements CategoryService {
     public function editCategory(Request $request, $id)
     {
        $category = Category::find($id);
+
        $name = $request->input('name');
-       $image = $request->file('image')->store('image');
-       
-       if($category != null)
+
+       if($request->hasFile('image') && $request->file('image')->isValid())
        {
+          if ($category->image) {
+            Storage::delete($category->image);
+          }
+
+          $image = $request->file('image');
+          $imagePath = $image->store('images');
+       } else {
+
+         $imagePath = $category->image;
+         
+       }
+    
         $category->name = $name;
-        $category->image = $image;
+        $category->image = $imagePath;
 
         $category->update();
-       }
+      
 
        
     }
     public function deleteCategory($id)
     {
       $category = Category::find($id);
+
       if($category->image)
       {
         Storage::delete($category->image);
       }
+      
        $category->destroy($id);
     }
     

@@ -170,6 +170,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\CategoryServiceProvider::class,
         App\Providers\WallpaperServiceProvider::class,
+        App\Providers\ReviewServiceProvider::class,
         ProtoneMedia\LaravelFFMpeg\Support\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
     ])->toArray(),

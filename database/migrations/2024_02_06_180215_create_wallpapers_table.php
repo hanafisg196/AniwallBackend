@@ -15,11 +15,15 @@ return new class extends Migration
        
             $table->id();
             $table->string('title', 300);
-            $table->string('thumbnail', 300);
-            $table->string('type', 300);
-            $table->string('size', 50)->nullable();
-            $table->integer('view')->nullable();
-            $table->integer('download')->nullable();
+            $table->string('thumbnail', 300)->nullable();
+            $table->string('type', 300)->nullable();
+            $table->string('resolution', 50)->nullable();
+            $table->integer('view')->default(0);
+            $table->integer('download')->default(0);
+            $table->tinyInteger('premium')->default(0);
+            $table->tinyInteger('review')->default(0);
+            $table->tinyInteger('enabled')->default(0);
+            $table->string('tags')->nullable();
             $table->unsignedBigInteger('cat_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
