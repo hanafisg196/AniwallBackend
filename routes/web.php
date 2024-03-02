@@ -34,6 +34,9 @@ Route::get('/login', function () {
 })->name('login');
 
 Route::post('/login', [LoginController::class, 'doLogin'] )->middleware('guest');
+
+
+
 //admin routes
 Route::middleware(AdminMiddleware::class)->group(function () {
     Route::get('/dashboard', [DasboardController::class, 'index'] )->name('dashboard');

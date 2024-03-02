@@ -1,4 +1,3 @@
-
 @extends('_partials.content')
 @section('content')
 
@@ -74,7 +73,7 @@
                 <h5 class="modal-title" id="addModalTitle">Add Wallpaper</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form class="auth-login-form mt-2" method="post"
+            <form id="tagform" class="auth-login-form mt-2" method="post"
                 enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
@@ -89,10 +88,10 @@
                         <div class="col-md-12">
                             <div class="row">
                                 
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="mb-1">
                                         <label for="cat_id">Category</label>
-                                        <select name="cat_id" id="cat_id" class="form-control">
+                                        <select  name="cat_id" id="cat_id" class="form-control">
                                             @foreach ($category as $item)
                                             <option value="{{ $item->id }}">
                                                 {{ $item->name}}</option>
@@ -114,6 +113,14 @@
                                 <input type="text" class="form-control" id="resolution" name="resolution"
                                     placeholder="Resolution">
                             </div>
+
+                            <div class="mb-3" id="tags" style="display: block">
+                                <label for="tags">Tags</label>
+                                <br>
+                                <input type="text" class="form-control" data-role="tagsinput" id="tags" name="tags">
+                            </div>
+
+                        
                         
                         </div>
                     </div>
@@ -131,55 +138,10 @@
 @endsection
 @section('script')
 <script>
-// function previewThumbnail() {
-//              const thumb = document.querySelector('#thumbnail');
-//              const thumbPreview = document.querySelector('.thumb-preview');
-//              // Display the image preview container
-//              thumbPreview.style.display = 'block';
-//              const oFReader = new FileReader();
-//              oFReader.readAsDataURL(thumb.files[0]);
-//              oFReader.onload = function(oFREvent) {
-//              thumbPreview.src = oFREvent.target.result;
-//              };
-//            }
-// function previewImage() {
-//         const imageInput = document.querySelector('#type');
-//         const previewContainer = document.querySelector('.image-preview');
-//         const videoContainer = document.querySelector('.video-preview');
 
-//         // Reset previous previews
-//         previewContainer.style.display = 'none';
-//         videoContainer.style.display = 'none';
-
-//         const file = imageInput.files[0];
-
-//         if (file) {
-//             const fileExtension = file.name.split('.').pop().toLowerCase();
-
-//             if (['jpg', 'jpeg', 'png', 'gif'].includes(fileExtension)) {
-//                 // Display image preview
-//                 previewContainer.style.display = 'block';
-//                 const reader = new FileReader();
-
-//                 reader.readAsDataURL(file);
-//                 reader.onload = function (event) {
-//                     previewContainer.src = event.target.result;
-//                 };
-//             } else if (fileExtension === 'mp4') {
-//                 // Display video preview
-//                 videoContainer.style.display = 'block';
-//                 const videoReader = new FileReader();
-
-//                 videoReader.readAsDataURL(file);
-//                 videoReader.onload = function (event) {
-//                     videoContainer.src = event.target.result;
-//                 };
-//             } else {
-//                 // Handle unsupported file types if needed
-//                 alert('Unsupported file type');
-//             }
-//         }
-//     }
+$(document).ready(function() {
+    $('.tags-selector').select2();
+});
 
 
 </script>

@@ -18,26 +18,30 @@
     <div class="card-body mt-2">
         <div class="row">
            
-                <div class="col-md-2">
-                    <div class="card border-0 text-white">
-                        <div class="tags_card"></div>
-                        <div class="card-img-overlay">
-                            <h4 class="card-title text-white"></h4>
-                            <div class="btn-group">
-                            
-                                    <a type="button" class="btn btn-icon btn-danger
-                                     waves-effect waves-float waves-light"
-                                       data-bs-toggle="tooltip"
-                                       data-bs-placement="top"
-                                       title="Disable On Demo"
-                                       href="#">
-                                        <span><i data-feather='trash-2'></i></span>
-                                    </a>
-                             
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                    <th>Tags</th>
+                    <th>Action</th>
+                    </tr>
+                    </thead>
+                    <style>
+                        .custom-td {
+                            white-space: pre-wrap;
+                        }
+                    </style>
+                    <tbody>
+                    <td>test</td>
+                    <td>
+                    <a href="" class="btn btn-danger btn-sm">
+                    <span><i data-feather='trash-2'></i></span>
+                    </a>
+                    </td>
+                    </tbody>
+                </table>
+             
+            </div>
            
         </div>
     </div>

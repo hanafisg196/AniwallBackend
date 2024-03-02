@@ -47,6 +47,8 @@ class WallpaperServiceImpl implements WallpaperService
         $resolution = $request->input('resolution');
         $cat_id = $request->input('cat_id');
         $type = $request->file('type');
+        $tags = explode(',', $request->tags);
+
 
         if ($type->getClientOriginalExtension() == 'mp4') {
           
@@ -80,8 +82,9 @@ class WallpaperServiceImpl implements WallpaperService
               
             ]);
         }
-
          $wallpaper->save();
+         $wallpaper->attachTags($tags);
+        
 
         if ($type->getClientMimeType() == 'video/mp4') {
             

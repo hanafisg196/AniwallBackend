@@ -28,6 +28,7 @@
 <script src="{{ asset('plugins/app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js') }}"></script>
 <script src="{{ asset('plugins/colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
 <script src="{{ asset('plugins/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
+<script src="{{ asset('plugins/app-assets/tagsinput/tagsinput.js') }}"></script>
 <!-- END: Page Vendor JS-->
 
 <!-- BEGIN: Theme JS-->
