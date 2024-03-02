@@ -10,6 +10,7 @@ use App\Services\WallpaperService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Spatie\Tags\Tag;
 
 class WallpaperServiceImpl implements WallpaperService
 {
@@ -24,12 +25,18 @@ class WallpaperServiceImpl implements WallpaperService
 
     public function getWallpapersById($id)
     {
-        return Wallpaper::find($id);
+       return  Wallpaper::find($id);
+       
     }
 
     public function getCategories()
     {
         return Category::all();
+    }
+    public function getTags()
+    {
+       
+   
     }
 
     private function createThumbnailImage($imagePath, $thumbnailPath)
@@ -41,13 +48,25 @@ class WallpaperServiceImpl implements WallpaperService
         return $thumbnailPath;
        
     }
+
+    private function formateSize($file)
+    {
+        $sizeInBytes = filesize($file);
+        $sizeInMb = $sizeInBytes / (1024 * 1024);
+        return number_format($sizeInMb,2);
+    }
+    
     public function createWallpaper(Request $request)
     {
+        
         $title = $request->input('title');
         $resolution = $request->input('resolution');
         $cat_id = $request->input('cat_id');
         $type = $request->file('type');
         $tags = explode(',', $request->tags);
+        $size = $this->formateSize($type);
+       
+      
 
 
         if ($type->getClientOriginalExtension() == 'mp4') {
@@ -61,6 +80,7 @@ class WallpaperServiceImpl implements WallpaperService
                 'type' => $path,
                 'resolution' => $resolution,
                 'cat_id' => $cat_id,
+                'size'=> $size.'.mb',
                 'user_id' => auth()->user()->id
               
             ]);
@@ -78,13 +98,15 @@ class WallpaperServiceImpl implements WallpaperService
                 'thumbnail'=> $thumbnailPath,
                 'type' => $path,
                 'cat_id' => $cat_id,
+                'size'=> $size.'.mb',
                 'user_id' => auth()->user()->id
               
             ]);
         }
          $wallpaper->save();
+         $wallpaper->detachTags($tags);
          $wallpaper->attachTags($tags);
-        
+           
 
         if ($type->getClientMimeType() == 'video/mp4') {
             
@@ -100,7 +122,8 @@ class WallpaperServiceImpl implements WallpaperService
         $title = $request->input('title');
         $cat_id = $request->input('cat_id');
         $resolution = $request->input('resolution');
-       
+      
+    
         if($request->hasFile('type') && $request->file('type')->isValid())
         {
             // Delete the old type file if it exists
@@ -130,14 +153,18 @@ class WallpaperServiceImpl implements WallpaperService
           
             $thumbPath = $wallpaper->thumbnail;
         }
-        
+
+        $tags = explode(',', $request->input('tags'));
+        $wallpaper->detachTags($tags);
+        $wallpaper->attachTags($tags);
+       
         $wallpaper->title = $title;
         $wallpaper->cat_id = $cat_id;
         $wallpaper->thumbnail = $thumbPath;
         $wallpaper->resolution = $resolution;
         $wallpaper->type = $path;
         $wallpaper->update();
-
+        
     }
     public function deleteWallpaper( $id)
     {

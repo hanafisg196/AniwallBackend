@@ -17,6 +17,7 @@ class WallpaperController extends Controller
     {
         $data = $this->wallpaperService->getWallpapers();
         $category = $this->wallpaperService->getCategories();
+       
         return view('dashboard.wallpaper')->with([
             'data' => $data, 'category' => $category
         ]);

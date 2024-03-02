@@ -23,7 +23,7 @@ return new class extends Migration
             $table->tinyInteger('premium')->default(0);
             $table->tinyInteger('review')->default(0);
             $table->tinyInteger('enabled')->default(0);
-            $table->string('tags')->nullable();
+            $table->string('size')->nullable();
             $table->unsignedBigInteger('cat_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();

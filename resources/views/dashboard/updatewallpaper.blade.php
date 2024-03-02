@@ -48,10 +48,10 @@
                                         placeholder="Resolution">
                                     </div>
 
-                                    <div class="mb-1" id="resolution" style="display: block">
-                                        <label for="resolution">Resolution</label>
-                                        <input type="text" class="form-control" id="resolution" name="resolution"
-                                        value="{{old('resolution', $data->resolution) }}"
+                                    <div class="mb-1" id="size" style="display: block">
+                                        <label for="size">Size</label>
+                                        <input type="text" class="form-control" id="size" name="size"
+                                        value="{{old('size', $data->size) }}" disabled
                                         placeholder="Resolution">
                                     </div>
 
@@ -107,6 +107,14 @@
                                     id="thumbnail" type="file" multiple>
                                 </div>
 
+                                <div class="mb-3" id="tags" style="display: block">
+                                    <label for="tags">Tags</label>
+                                    <br>
+                                    <input type="text" class="form-control"
+                                     data-role="tagsinput" id="tags"
+                                     name="tags" value="{{$data->tags->pluck('name')->implode(',') }}">
+                                </div>
+
                                 <div class="mb-1">
                                     <button class="btn btn-gradient-primary float-end" type="submit">Update</button>
                                 </div>
@@ -123,4 +131,16 @@
                         
             </form>
 </div>
+
+@endsection
+
+@section('script')
+<script>
+
+$(document).ready(function() {
+    $('.tags-selector').select2();
+});
+
+
+</script>
 @endsection
