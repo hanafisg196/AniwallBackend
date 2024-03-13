@@ -10,7 +10,7 @@ use App\Services\WallpaperService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
-use Spatie\Tags\Tag;
+
 
 class WallpaperServiceImpl implements WallpaperService
 {
@@ -33,12 +33,7 @@ class WallpaperServiceImpl implements WallpaperService
     {
         return Category::all();
     }
-    public function getTags()
-    {
-       
-   
-    }
-
+    
     private function createThumbnailImage($imagePath, $thumbnailPath)
     {
         

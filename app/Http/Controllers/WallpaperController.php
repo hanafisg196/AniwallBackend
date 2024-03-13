@@ -70,5 +70,7 @@ class WallpaperController extends Controller
         $this->wallpaperService->deleteWallpaper( $id);
         return redirect()->back()->with('success', 'Wallpaper deleted successfully');
     }
+
+    
     
 }

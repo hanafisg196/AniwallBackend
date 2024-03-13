@@ -31,14 +31,20 @@
                             white-space: pre-wrap;
                         }
                     </style>
+                     @foreach ($tags as $item)
                     <tbody>
-                    <td>test</td>
+                       
+                            
+                        
+                    <td>{{ $item->name }}</td>
                     <td>
                     <a href="" class="btn btn-danger btn-sm">
                     <span><i data-feather='trash-2'></i></span>
                     </a>
                     </td>
+                   
                     </tbody>
+                    @endforeach
                 </table>
              
             </div>

@@ -12,6 +12,6 @@ interface WallpaperService
     public function createWallpaper(Request $request);
     public function editWallpaper(Request $request, $id);
     public function deleteWallpaper($id);
-    public function getTags();
+    
   
 }
