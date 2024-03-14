@@ -21,7 +21,7 @@
  
                     <img class="card-img"
                     src="{{asset('storage/'. $item->thumbnail)}}"
-                    alt="Card image" height="300">
+                    alt="Card" height="300">
 
                     <div class="card-img-overlay bg-overlay">
                         <div class="btn-group">
@@ -62,6 +62,8 @@
             @endforeach
         </div>
     </div>
-
+    <div class="card-footer">
+        {{ $data->links() }}
+    </div>
 </div>
 @endsection

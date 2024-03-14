@@ -10,7 +10,7 @@ class CategoryServiceImpl implements CategoryService {
 
     public function getCategories()
     {
-        return Category::paginate(10);
+        return Category::latest()->paginate(10);
        
     }
 

@@ -11,7 +11,7 @@ class ReviewServiceImpl implements ReviewService
     {
         return Wallpaper::orderBy('id', 'desc')
               ->where('review', '=', 1)
-              ->get();
+              ->paginate(10);
     }
 
     public function acceptedReview($id)

@@ -5,13 +5,13 @@
     <div class="card-header border-bottom p-1">
         <div class="head-label"></div>
         <div class="dt-action-buttons text-end">
-            <div class="dt-buttons d-inline-flex">
+            {{-- <div class="dt-buttons d-inline-flex">
                 <button type="button"
                 class="btn btn-gradient-primary pull-right"
                 data-bs-toggle="modal"
                 data-bs-target="#addModal"><span><i
                 data-feather='plus'></i> Add Tag</span></button>
-            </div>
+            </div> --}}
         </div>
     </div>
 
@@ -23,6 +23,7 @@
                     <thead>
                     <tr>
                     <th>Tags</th>
+                    <th>Item</th>
                     <th>Action</th>
                     </tr>
                     </thead>
@@ -33,10 +34,9 @@
                     </style>
                      @foreach ($tags as $item)
                     <tbody>
-                       
-                            
-                        
+
                     <td>{{ $item->name }}</td>
+                    <td>0</td>
                     <td>
                     <a href="" class="btn btn-danger btn-sm">
                     <span><i data-feather='trash-2'></i></span>
@@ -53,7 +53,7 @@
     </div>
 
     <div class="card-footer">
-       
+        {{ $tags->links() }}
     </div>
 </div>
 

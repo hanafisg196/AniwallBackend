@@ -13,7 +13,7 @@
                         <i data-feather="tag"></i>
                     </div>
                 </div>
-                <h2 class="fw-bolder">10</h2>
+                <h2 class="fw-bolder">{{ $category }}</h2>
                 <p class="card-text">Categories</p>
             </div>
         </div>
@@ -24,7 +24,7 @@
                 <div class="avatar bg-light-warning p-50 mb-1">
                     <div class="avatar-content"><i data-feather="image"></i></div>
                 </div>
-                <h2 class="fw-bolder">10</h2>
+                <h2 class="fw-bolder">{{ $wallpaper }}</h2>
                 <p class="card-text">Wallpaper</p>
             </div>
         </div>
@@ -33,10 +33,10 @@
         <div class="card text-center">
             <div class="card-body">
                 <div class="avatar bg-light-danger p-50 mb-1">
-                    <div class="avatar-content"><i data-feather="figma"></i></div>
+                    <div class="avatar-content"><i data-feather="sliders"></i></div>
                 </div>
-                <h2 class="fw-bolder">10</h2>
-                <p class="card-text">Color</p>
+                <h2 class="fw-bolder">{{ $slide }}</h2>
+                <p class="card-text">Slide</p>
             </div>
         </div>
     </div>
@@ -46,7 +46,7 @@
                 <div class="avatar bg-light-primary p-50 mb-1">
                     <div class="avatar-content"><i data-feather="hash"></i></div>
                 </div>
-                <h2 class="fw-bolder">10</h2>
+                <h2 class="fw-bolder">{{ $tags }}</h2>
                 <p class="card-text">Tags</p>
             </div>
         </div>
