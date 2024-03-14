@@ -61,8 +61,6 @@ class WallpaperServiceImpl implements WallpaperService
         $tags = explode(',', $request->tags);
         $size = $this->formateSize($type);
        
-      
-
 
         if ($type->getClientOriginalExtension() == 'mp4') {
           

@@ -22,7 +22,7 @@
                         
                     <img class="card-img"
                         src="{{asset('storage/'. $item->thumbnail)}}"
-                    alt="Card image" height="300">
+                    alt="wallpaper" height="300">
 
                     <div class="card-img-overlay bg-overlay">
                         <div class="btn-group">

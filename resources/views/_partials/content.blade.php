@@ -47,10 +47,10 @@ data-textdirection="ltr">
             </i><span class="menu-title text-truncate" data-i18n="appsetting">Review</span></a>
             </li>
 
-            <li class=" nav-item {{ request()->segment(1)=='color'? 'active' : '' }}">
+            <li class=" nav-item {{ request()->segment(1)=='slide'? 'active' : '' }}">
                 <a class="d-flex align-items-center"
-                 href="/color"><i data-feather="figma">
-             </i><span class="menu-title text-truncate" data-i18n="appsetting">Color</span></a>
+                 href="/slide"><i data-feather="sliders">
+             </i><span class="menu-title text-truncate" data-i18n="appsetting">Slide</span></a>
             </li>
             <li class=" nav-item {{ request()->segment(1)=='tags'? 'active' : '' }}">
                 <a class="d-flex align-items-center"

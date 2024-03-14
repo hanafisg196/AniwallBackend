@@ -172,6 +172,7 @@ return [
         App\Providers\WallpaperServiceProvider::class,
         App\Providers\ReviewServiceProvider::class,
         App\Providers\TagServiceProvider::class,
+        App\Providers\SlideServiceProvider::class,
         Spatie\Tags\TagsServiceProvider::class,
         ProtoneMedia\LaravelFFMpeg\Support\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,

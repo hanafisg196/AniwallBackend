@@ -11,7 +11,7 @@
                 class="btn btn-gradient-primary pull-right"
                 data-bs-toggle="modal" data-bs-target="#addModal">
                 <span><i
-                 data-feather='plus'></i> Add Categories</span></button>
+                 data-feather='plus'></i> Add Slide</span></button>
             </div>
         </div>
         
@@ -23,12 +23,10 @@
         <div class="row">
             @include('_partials.alert')
             @foreach ( $data as $item )
-                
-           
                 <div class="col-md-3">
                     <div class="card border-0 text-white">
                         <img class="card-img" src="{{ asset('storage/' . $item->image . '?size=500') }}"
-                         alt="Card" height="200">
+                         alt="slide" height="200">
 
                         <div class="card-img-overlay bg-overlay">
                             <h4 class="card-title text-white">{{ $item->name }}</h4>
@@ -40,7 +38,7 @@
                                    <span><i data-feather='edit-2'></i></span>
                                 </a>
 
-                                    <form action="/categories/delete/{{ $item->id }}" method="post">
+                                    <form action="/slide/delete/{{ $item->id }}" method="post">
                                             @csrf
                                         <button type="submit" class="btn btn-icon btn-danger
                                     waves-effect waves-float waves-light"
@@ -69,13 +67,12 @@
                                 data-bs-dismiss="modal" aria-label="Close">
                             </button>
                             </div>
-                            <form class="auth-login-form mt-2" action="/categories/edit/{{ $item->id }}" method="post"
+                            <form class="auth-login-form mt-2" action="/slide/update/{{ $item->id }}" method="post"
                                   enctype="multipart/form-data">
                                 @csrf
                                 <div class="modal-body">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <input name="id" type="hidden" value="" id="id">
                                             <div class="mb-1">
                                                 <label for="name">Name</label>
                                                 <input class="form-control @error('name') is-invalid @enderror"
@@ -88,6 +85,17 @@
                                                 </div>
                                              @enderror
                                             </div>
+                                            <div class="col-md-4">
+                                                <div class="mb-1">
+                                                    <label for="cat_id">Category</label>
+                                                    <select  name="cat_id" id="cat_id" class="form-control">
+                                                        @foreach ($category as $categories)
+                                                        <option value="{{ $categories->id }}">
+                                                            {{ $categories->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                </div>
                                             <div class="mb-1">
                                                 <label for="image">Image</label>
                                                 <input class="form-control @error('image') is-invalid @enderror"
@@ -100,6 +108,19 @@
                                                 </div>
                                              @enderror
                                             </div>
+
+                                            <div class="mb-1">
+                                                <label for="status">Status</label>
+                                                <select name="status" id="status" class="form-select">
+                                                    <option value="0" >
+                                                        enable
+                                                    </option>
+                                                    <option value="1" >
+                                                        disable
+                                                    </option>
+                                                </select>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -131,7 +152,7 @@
                 <h5 class="modal-title" id="addModalTitle">Add Categories</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-                <form class="auth-login-form mt-2" action="/categories/insert" method="post"
+                <form class="auth-login-form mt-2" action="/slide" method="post"
                       enctype="multipart/form-data">
                    @csrf
                     <div class="modal-body">
@@ -140,7 +161,7 @@
                                 <div class="mb-1">
                                     <label for="name">Name</label>
                                     <input class="form-control  @error('name') is-invalid @enderror"
-                                    placeholder="Enter Categories Name"
+                                      placeholder="Enter Slide Name"
                                      name="name" type="text"id="name" required>
 
                                      @error('name')
@@ -148,7 +169,18 @@
                                          {{ $message }}
                                      </div>
                                   @enderror
-                                     
+
+                                  <div class="col-md-4">
+                                    <div class="mb-1">
+                                        <label for="cat_id">Category</label>
+                                        <select  name="cat_id" id="cat_id" class="form-control">
+                                            @foreach ($category as $categories)
+                                            <option value="{{ $categories->id }}">
+                                                {{ $categories->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    </div>
                                         
                                 </div>
                                 <div class="mb-1">
@@ -161,6 +193,18 @@
                                             {{ $message }}
                                         </div>
                                      @enderror
+                                </div>
+
+                                <div class="mb-1">
+                                    <label for="status">Status</label>
+                                    <select name="status" id="status" class="form-select">
+                                        <option value="0" >
+                                            enable
+                                        </option>
+                                        <option value="1" >
+                                            disable
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                         </div>

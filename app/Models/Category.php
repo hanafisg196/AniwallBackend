@@ -17,4 +17,9 @@ class Category extends Model
     {
         return $this->hasMany(Wallpaper::class, "cat_id", "id");
     }
+
+    public function slide()
+    {
+        return $this->hasMany(Slide::class, "cat_id", "id");
+    }
 }
