@@ -23,10 +23,10 @@
         <div class="row">
             @include('_partials.alert')
             @foreach ( $data as $item )
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="card border-0 text-white">
                         <img class="card-img" src="{{ asset('storage/' . $item->image . '?size=500') }}"
-                         alt="slide" height="200">
+                         alt="slide" height="200" width="400">
 
                         <div class="card-img-overlay bg-overlay">
                             <h4 class="card-title text-white">{{ $item->name }}</h4>
@@ -112,12 +112,14 @@
                                             <div class="mb-1">
                                                 <label for="status">Status</label>
                                                 <select name="status" id="status" class="form-select">
-                                                    <option value="0" >
-                                                        enable
-                                                    </option>
-                                                    <option value="1" >
-                                                        disable
-                                                    </option>
+
+                                                    <option value="0" @if ($item->status == 0) selected
+                                                        @endif>Enable</option>
+
+                                                    <option value="1" @if ($item->status == 1) selected
+                                                         @endif>Disable</option>
+                                                
+                                                    
                                                 </select>
                                             </div>
 
