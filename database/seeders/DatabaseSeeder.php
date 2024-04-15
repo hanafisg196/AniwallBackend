@@ -21,6 +21,11 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('rahasia'),
         ]);
 
+
+       
+
+
+
         
     }
 }

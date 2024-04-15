@@ -67,11 +67,19 @@ data-textdirection="ltr">
                 href="/adsmanager"><i data-feather="dollar-sign">
             </i><span class="menu-title text-truncate" data-i18n="appsetting">Ads Manager</span></a>
             </li>
-            <li class=" nav-item {{ request()->segment(1)=='appsetting'? 'active' : '' }}">
+            <li class=" nav-item {{ request()->segment(1)=='setting'? 'active' : '' }}">
                 <a class="d-flex align-items-center"
-             href="/appsetting"><i data-feather="settings">
+             href="/setting"><i data-feather="settings">
             </i><span class="menu-title text-truncate" data-i18n="appsetting">Setting</span></a>
             </li>
+
+            <li class=" nav-item {{ request()->segment(1)=='appsetting'? 'active' : '' }}">
+            <a class="d-flex align-items-center"
+            href="/appsetting"><i data-feather="smartphone">
+           </i><span class="menu-title text-truncate" data-i18n="appsetting">App Setting</span></a>
+           </li>
+
+
         </ul>
     </div>
 </div>

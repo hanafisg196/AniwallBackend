@@ -37,9 +37,14 @@
             </i><span class="menu-title text-truncate" data-i18n="appsetting">Ads Manager</span></a>
             </li>
             <li class="nav-item"><a class="d-flex align-items-center"
-             href="/appsetting"><i data-feather="settings">
+             href="/setting"><i data-feather="settings">
             </i><span class="menu-title text-truncate" data-i18n="appsetting">Setting</span></a>
             </li>
+            <li class="nav-item"><a class="d-flex align-items-center"
+                href="/appsetting"><i data-feather="settings">
+               </i><span class="menu-title text-truncate" data-i18n="appsetting">Setting</span></a>
+               </li>
+            
         </ul>
     </div>
 </div>

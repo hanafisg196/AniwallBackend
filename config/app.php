@@ -174,6 +174,7 @@ return [
         App\Providers\TagServiceProvider::class,
         App\Providers\SlideServiceProvider::class,
         App\Providers\DasbordServiceProvider::class,
+        App\Providers\AppSettingServiceProvider::class,
         Spatie\Tags\TagsServiceProvider::class,
         ProtoneMedia\LaravelFFMpeg\Support\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,

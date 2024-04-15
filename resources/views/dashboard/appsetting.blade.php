@@ -9,49 +9,30 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="mb-1">
-                        <label for="onesignal_id">One Signal ID</label>
-                        <input type="text" class="form-control" id="onesignal_id" name="onesignal_id"
-                               value="">
+                        <label for="package_name">Packname</label>
+                        <input type="text" class="form-control" id="package_name"
+                         name="package_name" value="{{ $data->package_name }}">
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="mb-1">
-                        <label for="onesignal_rest">One Signal Rest Key</label>
-                        <input type="text" class="form-control" id="onesignal_rest" name="onesignal_rest"
-                               value="">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="mb-1">
-                        <label for="packagename">More Apps URL</label>
-                        <input type="text" class="form-control" id="packagename" name="packagename"
-                               value="">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="mb-1">
-                        <label for="privacy">Privacy Police</label>
-                        <input type="text" class="form-control" id="privacy" name="privacy"
-                               value="">
-                    </div>
-                </div>
+            
+            
                 <div class="col-md-12">
                     <div class="mb-1">
                         <label for="server_key">Server Key</label>
                         <div class="input-group">
                             <input type="text" class="form-control"
-                             aria-describedby="button-addon2" id="server_key" name="server_key" value=""/>
-                            <button class="btn btn-outline-primary" id="button-addon2" 
+                             aria-describedby="button-addon2" id="api_key"
+                             name="api_key" value="{{ $data->api_key }}"/>
+                            <button class="btn btn-outline-primary" id="button-addon2"
                             type="button" onclick="generate_server_key()">GENERATE</button>
                         </div>
                     </div>
                 </div>
                 
                     <div class="col-md-12">
-                        <button type="button"
+                        <button type="submit"
                                 data-bs-toggle="tooltip"
                                 data-bs-placement="top"
-                                title="Disable On Demo"
                                 class="btn btn-gradient-primary float-end">Submit</button>
                     </div>
               
@@ -60,4 +41,16 @@
     </div>
 </div>
 @endsection
+
+<script>
+    function generate_server_key() {
+        var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var length = 16;
+        var serverKey = '';
+        for (var i = 0; i < length; i++) {
+            serverKey += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        document.getElementById('api_key').value = serverKey;
+    }
+</script>
 

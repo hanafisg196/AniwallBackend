@@ -8,6 +8,7 @@ use App\Http\Controllers\DasboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\WallpaperController;
@@ -61,7 +62,9 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::get('/tags', [TagsController::class, 'index'] );
     Route::get('/notification', [NotificationController::class, 'index'] );
     Route::get('/adsmanager', [AdsmanagerController::class, 'index'] );
+    Route::get('/setting', [SettingController::class, 'index'] );
     Route::get('/appsetting', [AppsettingController::class, 'index'] );
+    Route::post('/appsetting/update', [AppsettingController::class, 'update'] );
    
    
 });
