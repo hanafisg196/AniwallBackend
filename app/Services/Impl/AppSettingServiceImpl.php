@@ -17,9 +17,9 @@ class AppSettingServiceImpl implements AppSettingService
     public function updateAppSetting(Request $request)
     {
        $appSetting = AppSettings::first();
-       $packname = $request->input('packname');
+       $packname = $request->input('package_name');
        $api_key = $request->input('api_key');
-       $appSetting->packname = $packname;
+       $appSetting->package_name = $packname;
        $appSetting->api_key = $api_key;
        $appSetting->save();
     }

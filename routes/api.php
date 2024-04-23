@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\UserApiController;
+use App\Http\Controllers\Api\WallpaperApiController;
+use App\Http\Middleware\ApiAuthMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +17,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::middleware(ApiAuthMiddleware::class)->group(function () {
+    Route::get('/wallpaper/test', [WallpaperApiController::class, 'test'] );
+    Route::get('/wallpaper/latest', [WallpaperApiController::class, 'latest'] );
+    Route::get('/wallpaper/popular', [WallpaperApiController::class, 'popular'] );
+    Route::get('/wallpaper/detail/{id}', [WallpaperApiController::class, 'detail']);
+    Route::get('/wallpaper/random', [WallpaperApiController::class, 'random'] );
+
 });
