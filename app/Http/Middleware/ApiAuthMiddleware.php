@@ -16,8 +16,8 @@ class ApiAuthMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $packageName = $request->header('X-Android-PackageName');
-        $serverKey = $request->header('api_key');
+        $packageName = $request->header('AppId');
+        $serverKey = $request->header('apiKey');
 
 
         $token = AppSettings::where('package_name', $packageName)

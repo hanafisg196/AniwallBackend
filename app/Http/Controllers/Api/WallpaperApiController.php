@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\WallpaperResource;
 use App\Http\Resources\WallpapersCollection;
+use App\Models\Slide;
 use App\Models\Wallpaper;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class WallpaperApiController extends Controller
 {
@@ -68,5 +71,7 @@ class WallpaperApiController extends Controller
         return new WallpaperResource($wallpaper);
 
     }
+
+    
 
 }
