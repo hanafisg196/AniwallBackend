@@ -8,7 +8,7 @@ use App\Http\Resources\WallpapersCollection;
 use App\Models\Wallpaper;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
-
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class WallpaperApiController extends Controller
 {
@@ -20,28 +20,49 @@ class WallpaperApiController extends Controller
             'message' => 'Reponse Working'
         ])->setStatusCode(200);
     }
-    public function latest(Request $request):WallpapersCollection
+
+    public function latest(Request $request)
+{
+    $page = intval($request->query('page', 1));
+    $perPage = intval($request->query('perPage', 5));
+
+    $wallpapers = Wallpaper::latest()
+                ->paginate($perPage, ['*'], 'page', $page);
+
+    return response()->json([
+        'data' => $wallpapers->items(),
+        [
+            'total' => $wallpapers->total(),
+            'per_page' => $wallpapers->perPage(),
+            'current_page' => $wallpapers->currentPage(),
+            'last_page' => $wallpapers->lastPage(),
+            'from' => $wallpapers->firstItem(),
+            'to' => $wallpapers->lastItem()
+        ]
+    ]);
+}
+
+
+    public function popular(Request $request)
     {
-            $page = $request->input('page', 1);
-            $size = $request->input('size',10);
-
-            $wallpapers = Wallpaper::latest();
-            $wallpapers = $wallpapers->paginate(perPage: $size, page: $page);
-
-            return new WallpapersCollection($wallpapers);
         
-    }
+    $page = intval($request->query('page', 1));
+    $perPage = intval($request->query('perPage', 5));
 
-    public function popular(Request $request):WallpapersCollection
-    {
-        $page = $request->input('page', 1);
-        $size = $request->input('size',10);
+    $wallpapers = Wallpaper::orderBy("view", "desc")
+                  ->paginate($perPage, ['*'], 'page', $page);
 
-        $wallpapers = Wallpaper::orderBy('view', 'desc');
-        $wallpapers = $wallpapers->paginate(perPage: $size, page: $page);
-
-        return new WallpapersCollection($wallpapers);
-
+    return response()->json([
+        'data' => $wallpapers->items(),
+        [
+            'total' => $wallpapers->total(),
+            'per_page' => $wallpapers->perPage(),
+            'current_page' => $wallpapers->currentPage(),
+            'last_page' => $wallpapers->lastPage(),
+            'from' => $wallpapers->firstItem(),
+            'to' => $wallpapers->lastItem()
+        ]
+    ]);
     }
 
     public function random():WallpapersCollection {

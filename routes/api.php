@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CategoryApiController;
+use App\Http\Controllers\Api\SlideApiController;
 use App\Http\Controllers\Api\UserApiController;
 use App\Http\Controllers\Api\WallpaperApiController;
 use App\Http\Middleware\ApiAuthMiddleware;
@@ -26,6 +27,6 @@ Route::middleware(ApiAuthMiddleware::class)->group(function () {
     Route::get('/wallpaper/detail/{id}', [WallpaperApiController::class, 'detail']);
     Route::get('/wallpaper/random', [WallpaperApiController::class, 'random'] );
     Route::get('/wallpaper/categories', [CategoryApiController::class, 'categories'] );
-    Route::get('/wallpaper/slide', [CategoryApiController::class, 'slide'] );
+    Route::get('/wallpaper/slide', [SlideApiController::class, 'slide'] );
 
 });

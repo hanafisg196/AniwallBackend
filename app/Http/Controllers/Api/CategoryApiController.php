@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryCollection;
 use App\Models\Category;
+use App\Models\Slide;
 use Illuminate\Http\Request;
 
 class CategoryApiController extends Controller
@@ -19,11 +20,7 @@ class CategoryApiController extends Controller
        return new CategoryCollection($categories);
     }
 
-    public function slide():CategoryCollection
-    {
-        $category = Category::limit(5)->get();
-        return new CategoryCollection($category);
-    }
+   
 
 
 }
