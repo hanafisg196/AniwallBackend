@@ -8,7 +8,6 @@ use App\Http\Resources\WallpapersCollection;
 use App\Models\Wallpaper;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class WallpaperApiController extends Controller
 {

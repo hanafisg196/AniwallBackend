@@ -3,10 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CategoryCollection;
 use App\Models\Category;
-use App\Models\Slide;
-use App\Models\Wallpaper;
 use Illuminate\Http\Request;
 
 class CategoryApiController extends Controller

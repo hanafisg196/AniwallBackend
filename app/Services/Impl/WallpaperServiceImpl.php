@@ -65,7 +65,7 @@ class WallpaperServiceImpl implements WallpaperService
         if ($type->getClientOriginalExtension() == 'mp4') {
           
             $path = $type->store('videos');
-            $thumbnailFilename = pathinfo($path, PATHINFO_FILENAME) . '.webp';
+            $thumbnailFilename = pathinfo($path, PATHINFO_FILENAME) . '.jpg';
             $wallpaper = new Wallpaper([
 
                 'title' => $title,
