@@ -110,11 +110,6 @@
                             </div>
                           
 
-                            <div class="mb-1" id="resolution" style="display: block">
-                                <label for="resolution">Resolution</label>
-                                <input type="text" class="form-control" id="resolution" name="resolution"
-                                    placeholder="Resolution">
-                            </div>
 
                             <div class="mb-3" id="tags" style="display: block">
                                 <label for="tags">Tags</label>

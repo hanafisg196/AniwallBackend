@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
-
 class WallpaperServiceImpl implements WallpaperService
 {
 
@@ -50,24 +49,46 @@ class WallpaperServiceImpl implements WallpaperService
         $sizeInMb = $sizeInBytes / (1024 * 1024);
         return number_format($sizeInMb,2);
     }
+
+    private function getResolution($type,$pathFile)
+    {
+       
+        if($type->getClientOriginalExtension() == 'mp4')
+        {
+            return '1080 x 1920';
+        }
+        else {
+            $fileInfo = getimagesize($pathFile);
+            $width = $fileInfo[0];
+            $height = $fileInfo[1];
+            return $width. ' x '. $height;
+            
+        }
+       
+    }
+ 
+    
+    
+
     
     public function createWallpaper(Request $request)
     {
         
         $title = $request->input('title');
-        $resolution = $request->input('resolution');
         $cat_id = $request->input('cat_id');
         $type = $request->file('type');
         $tags = explode(',', $request->tags);
         $size = $this->formateSize($type);
-       
+        $resolution = $this->getResolution(
+           $type, $type->path()
+        );
+    
 
         if ($type->getClientOriginalExtension() == 'mp4') {
-          
+           
             $path = $type->store('videos');
             $thumbnailFilename = pathinfo($path, PATHINFO_FILENAME) . '.jpg';
             $wallpaper = new Wallpaper([
-
                 'title' => $title,
                 'thumbnail'=> $thumbnailFilename,
                 'type' => $path,
@@ -75,13 +96,13 @@ class WallpaperServiceImpl implements WallpaperService
                 'cat_id' => $cat_id,
                 'size'=> $size.'.mb',
                 'user_id' => auth()->user()->id
-              
+                
             ]);
 
         } else {
 
             $path = $type->store('images');
-            $thumbnailFilename = pathinfo($path, PATHINFO_FILENAME) . '.webp';
+            $thumbnailFilename = pathinfo($path, PATHINFO_FILENAME) . '.jpg';
             $thumbnailPath = 'thumbs/' . $thumbnailFilename;
             $this->createThumbnailImage($type->path(), storage_path('app/public/' . $thumbnailPath));
 
@@ -92,6 +113,7 @@ class WallpaperServiceImpl implements WallpaperService
                 'type' => $path,
                 'cat_id' => $cat_id,
                 'size'=> $size.'.mb',
+                'resolution' => $resolution,
                 'user_id' => auth()->user()->id
               
             ]);
