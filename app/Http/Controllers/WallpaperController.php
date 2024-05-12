@@ -78,6 +78,16 @@ class WallpaperController extends Controller
         return redirect()->back()->with('success', 'Wallpaper deleted successfully');
     }
 
-    
+    public function search(Request $request)
+    {
+        $data = $this->wallpaperService->searchWallpaper($request);
+        $category = $this->wallpaperService->getCategories();
+        $slide = $this->wallpaperService->getslide();
+        return view('dashboard.wallpaper')->with([
+            'data' => $data,
+            'category' => $category,
+           'slide' => $slide
+        ]);
+    }
     
 }

@@ -11,6 +11,7 @@ use App\Services\WallpaperService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Spatie\Tags\Tag;
 
 class WallpaperServiceImpl implements WallpaperService
 {
@@ -201,6 +202,21 @@ class WallpaperServiceImpl implements WallpaperService
             Storage::delete($wallpaper->thumbnail);
         }
         $wallpaper->delete();
+    }
+
+    public function searchWallpaper(Request $request)
+    {
+        
+        $wallpaper = Wallpaper::when($request->has('search'), function($query) use ($request)
+        {
+            $query->where('title', 'LIKE', '%' . $request->search . '%')
+            ->orWhereHas('tags', function($query) use ($request){
+                $query->where('name', 'LIKE', '%' . $request->search . '%');
+            });
+            
+        });
+        return $wallpaper->paginate(10);
+
     }
 
 }

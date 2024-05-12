@@ -45,6 +45,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::get('/wallpaper/view/{id}', [WallpaperController::class, 'getDataById'] );
     Route::post('/wallpaper/edit/{id}', [WallpaperController::class, 'UpdateWallpaper'] );
     Route::post('/wallpaper/delete/{id}', [WallpaperController::class, 'DeleteWallpaper'] );
+    Route::get('/wallpaper/search', [WallpaperController::class, 'search'] );
     Route::get('/review', [ReviewController::class, 'index'] );
     Route::post('/review/accept/{id}', [ReviewController::class, 'accept'] );
     Route::post('/review/delete/{id}', [ReviewController::class, 'deleteReview'] );
@@ -58,6 +59,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::get('/setting', [SettingController::class, 'index'] );
     Route::get('/appsetting', [AppsettingController::class, 'index'] );
     Route::post('/appsetting/update', [AppsettingController::class, 'update'] );
+    
    
    
 });

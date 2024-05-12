@@ -6,11 +6,25 @@
     <div class="card-header border-bottom p-1">
         <div class="head-label"></div>
         <div class="dt-action-buttons text-end">
+            <form action="/wallpaper/search" method="get">
+                @csrf
+                <div class="dt-buttons d-inline-flex">
+                    <input type="text" class="form-control" id="search"
+                    name="search" placeholder="Search" value="{{ request('search') }}">
+                    &nbsp;
+                    <button type="submit" class="btn btn-icon btn-primary waves-effect waves-float waves-light">
+                        <span><i data-feather='search'></i></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="dt-action-buttons text-end">
             <div class="dt-buttons d-inline-flex">
-                <button type="button" class="btn btn-gradient-primary pull-right" data-bs-toggle="modal"
+               <button type="button" class="btn btn-gradient-primary pull-right" data-bs-toggle="modal"
                     data-bs-target="#addModal"><span><i data-feather='plus'></i> Add Wallpaper</span></button>
             </div>
         </div>
+        
     </div>
     <div class="card-body mt-2">
         <div class="row">
@@ -18,8 +32,6 @@
             @foreach ($data as $item)
             <div class="col-md-2">
                 <div class="card border-0 text-white">
-                    
-                        
                     <img class="card-img"
                         src="{{asset('storage/'. $item->thumbnail)}}"
                     alt="wallpaper" height="300">
