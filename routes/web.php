@@ -27,17 +27,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function () {
-    return view('dashboard.login');
-})->name('login');
 
-Route::get('/login', function () {
-    return view('dashboard.login');
-})->name('login');
+Route::get('/', [LoginController::class, 'index'] )->name('login');
 
-Route::post('/login', [LoginController::class, 'doLogin'] )->middleware('guest');
-
-
+Route::post('/login', [LoginController::class, 'doLogin'] );
 
 //admin routes
 Route::middleware(AdminMiddleware::class)->group(function () {

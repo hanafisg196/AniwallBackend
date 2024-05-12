@@ -17,9 +17,13 @@ class WallpaperController extends Controller
     {
         $data = $this->wallpaperService->getWallpapers();
         $category = $this->wallpaperService->getCategories();
+        $slide = $this->wallpaperService->getslide();
        
         return view('dashboard.wallpaper')->with([
-            'data' => $data, 'category' => $category
+            'data' => $data,
+             'category' => $category,
+             'slide' => $slide
+
         ]);
     }
 
@@ -27,10 +31,13 @@ class WallpaperController extends Controller
     {
         $data = $this->wallpaperService->getWallpapersById($id);
         $category = $this->wallpaperService->getCategories();
+        $slide = $this->wallpaperService->getslide();
 
         
         return view('dashboard.updatewallpaper')->with([
-            'data' => $data, 'category' => $category
+            'data' => $data,
+            'category' => $category,
+            'slide' => $slide
         ]);
     }
 

@@ -5,6 +5,7 @@ namespace App\Services\Impl;
 
 use App\Jobs\GenerateThumbnailVideo;
 use App\Models\Category;
+use App\Models\Slide;
 use App\Models\Wallpaper;
 use App\Services\WallpaperService;
 use Illuminate\Http\Request;
@@ -31,6 +32,11 @@ class WallpaperServiceImpl implements WallpaperService
     public function getCategories()
     {
         return Category::all();
+    }
+
+    public function getSlide()
+    {
+        return Slide::all();
     }
     
     private function createThumbnailImage($imagePath, $thumbnailPath)
@@ -67,15 +73,13 @@ class WallpaperServiceImpl implements WallpaperService
        
     }
  
-    
-    
 
-    
     public function createWallpaper(Request $request)
     {
         
         $title = $request->input('title');
         $cat_id = $request->input('cat_id');
+        $slide_id = $request->input('slide_id');
         $type = $request->file('type');
         $tags = explode(',', $request->tags);
         $size = $this->formateSize($type);
@@ -94,6 +98,7 @@ class WallpaperServiceImpl implements WallpaperService
                 'type' => $path,
                 'resolution' => $resolution,
                 'cat_id' => $cat_id,
+                'slide_id' => $slide_id,
                 'size'=> $size.'.mb',
                 'user_id' => auth()->user()->id
                 
@@ -112,6 +117,7 @@ class WallpaperServiceImpl implements WallpaperService
                 'thumbnail'=> $thumbnailPath,
                 'type' => $path,
                 'cat_id' => $cat_id,
+                'slide_id' => $slide_id,
                 'size'=> $size.'.mb',
                 'resolution' => $resolution,
                 'user_id' => auth()->user()->id
@@ -136,6 +142,7 @@ class WallpaperServiceImpl implements WallpaperService
         $wallpaper = Wallpaper::find($id);
         $title = $request->input('title');
         $cat_id = $request->input('cat_id');
+        $slide_id = $request->input('slide_id');
         $resolution = $request->input('resolution');
       
     
@@ -175,6 +182,7 @@ class WallpaperServiceImpl implements WallpaperService
        
         $wallpaper->title = $title;
         $wallpaper->cat_id = $cat_id;
+        $wallpaper->slide_id = $slide_id;
         $wallpaper->thumbnail = $thumbPath;
         $wallpaper->resolution = $resolution;
         $wallpaper->type = $path;

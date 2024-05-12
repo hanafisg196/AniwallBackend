@@ -17,11 +17,9 @@ class SlideController extends Controller
     public function index()
     {
         $data = $this->slideService->getSlide();
-        $category = $this->slideService->getCategory();
         return view('dashboard.slide')
         ->with([
             'data'=> $data,
-            'category'=> $category
         ]);
     }
 

@@ -7,10 +7,25 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
+
+
+    public function index()
+    {
+        if (auth()->check()) {
+            if (auth()->user()->is_admin == 1) {
+                return redirect()->route('dashboard');
+            } else {
+                return view('dashboard.login')->with('error',"Wrong password or email");
+            }
+        }
+        return view('dashboard.login');
+    }
+
     
     public function doLogin(Request $request)
     {
-        $user = $request->all();
+        $credentials = $request->only('email', 'password');
+
         $this->validate($request,[
 
             "email"    => "required|email",
@@ -18,24 +33,19 @@ class LoginController extends Controller
 
         ]);
         
-
-        if(auth()->attempt(['email' => $user['email'], 'password' => $user['password']]))
+        if(auth()->attempt($credentials))
         {
            
            if(auth()->user()->is_admin == 1)
            {
             return redirect()->route('dashboard');
-           } else{
-
-            if(auth()->check()) {
-                
-                return abort(404);
-            }
-
-           }
+           } else {
+         
+            return redirect('/')->with('error',"Wrong password or email");
+        }
         }
         
-         return redirect('/login')->with('error',"Wrong password or email");
+         return redirect('/')->with('error',"Wrong password or email");
    
     }
 

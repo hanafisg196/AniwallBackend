@@ -16,11 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('image');
             $table->tinyInteger('status')->default(0);
-            $table->unsignedBigInteger('cat_id');
             $table->timestamps();
             
-            $table->foreign("cat_id")->on("categories")->references("id");
-
         });
     }
 

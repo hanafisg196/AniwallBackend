@@ -12,9 +12,9 @@ class Slide extends Model
     protected $primaryKey = 'id';
     protected $guarded =['id'];
 
-    public function category()
+    public function wallpapers()
     {
-        return $this->belongsTo(Category::class, 'cat_id', 'id');
+        return $this->hasMany(Wallpaper::class, 'slide_id', 'id');
     }
 
 }

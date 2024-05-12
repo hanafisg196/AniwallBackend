@@ -15,23 +15,16 @@ class SlideServiceImpl implements SlideService
        return Slide::orderBy('id', 'desc')
              ->paginate(10);
     }
-    public function getCategory()
-    {
-        return Category::all();
-    }
     public function getSlideById($id)
     {
         return Slide::where('id', $id);
     }
-
-   
     public function createSlide(Request $request)
     {
          $slide = new Slide;
          $validate = $request->validate([
          'name' => 'required','max:100',
          'image' =>'required','mimes:png,jpg',
-         'cat_id' =>'required',
          'status' =>'required'
        ]);
 
@@ -40,32 +33,25 @@ class SlideServiceImpl implements SlideService
             $validate['image'] = $request->file('image')->store('images');
          }
 
-         $validate['cat_id'] = $request->input('cat_id');
-
          $slide->create($validate);
     }
     public function updateSlide(Request $request, $id)
     {
-        $slide = Slide::where('id', $id);
+        $slide = Slide::find($id);
         $validate = $request->validate([
             'name' =>'required','max:100',
             'image' =>'mimes:png,jpg',
-            'cat_id' =>'required',
             'status' =>'required'
         ]);
 
-       if($request->hasFile('image'))
+       if($request->hasFile('image') && $request->file('image')->isValid())
        {
             if ($slide->image)
             {
                 Storage::delete($slide->image);
-            } else {
-                $validate['image'] = $request->file('image')->store('images');
             }
+          $validate['image'] = $request->file('image')->store('images');
        }
-
-        $validate['cat_id'] = $request->input('cat_id');
-
         $slide->update($validate);
     }
     public function deleteSlide($id)

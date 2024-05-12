@@ -241,7 +241,6 @@
                             <div class="mb-1">
                                 <label class="form-label" for="tags">Tags : </label>
                                 
-                              
                                 <label class="color-label">
                                     <span class="color-label-checkbox">
                                         <input type="checkbox" id="tags" name="tags">

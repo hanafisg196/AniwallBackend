@@ -26,11 +26,13 @@ return new class extends Migration
             $table->string('size')->nullable();
             $table->unsignedBigInteger('cat_id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('slide_id')->nullable();
             $table->timestamps();
 
             
             $table->foreign("cat_id")->on("categories")->references("id");
             $table->foreign("user_id")->on("users")->references("id");
+            $table->foreign("slide_id")->references("id")->on("slides")->onDelete("set null");
             
         });
     }

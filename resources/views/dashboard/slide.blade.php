@@ -85,17 +85,7 @@
                                                 </div>
                                              @enderror
                                             </div>
-                                            <div class="col-md-4">
-                                                <div class="mb-1">
-                                                    <label for="cat_id">Category</label>
-                                                    <select  name="cat_id" id="cat_id" class="form-control">
-                                                        @foreach ($category as $categories)
-                                                        <option value="{{ $categories->id }}">
-                                                            {{ $categories->name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                </div>
+                                        
                                             <div class="mb-1">
                                                 <label for="image">Image</label>
                                                 <input class="form-control @error('image') is-invalid @enderror"
@@ -132,7 +122,6 @@
                                                 data-bs-toggle="tooltip"
                                                 data-bs-placement="top"
                                                 class="btn btn-gradient-primary float-end">Submit</button>
-                                  
                                 </div>
                             </form>
                         </div>
@@ -171,18 +160,6 @@
                                          {{ $message }}
                                      </div>
                                   @enderror
-
-                                  <div class="col-md-4">
-                                    <div class="mb-1">
-                                        <label for="cat_id">Category</label>
-                                        <select  name="cat_id" id="cat_id" class="form-control">
-                                            @foreach ($category as $categories)
-                                            <option value="{{ $categories->id }}">
-                                                {{ $categories->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    </div>
                                         
                                 </div>
                                 <div class="mb-1">

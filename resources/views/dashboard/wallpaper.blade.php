@@ -108,17 +108,25 @@
                                 <label for="type" id="wallpaper_file_label_id">Wallpaper</label>
                                 <input class="form-control"  name="type" id="type" type="file" multiple>
                             </div>
-                          
-
-
+                        
                             <div class="mb-3" id="tags" style="display: block">
                                 <label for="tags">Tags</label>
                                 <br>
                                 <input type="text" class="form-control" data-role="tagsinput" id="tags" name="tags">
                             </div>
-
-                        
-                        
+                         
+                        </div>
+                        <div class="mb-1">
+                            <label class="form-label" for="slide">Slide : </label>
+                            @foreach ($slide as $item)
+                            <label class="color-label">
+                              
+                                <span class="color-label-checkbox">
+                                    <input type="checkbox" id="slide_id" name="slide_id" value="{{ $item->id }}">
+                                </span><span class="color-label-text">{{ $item->name }}</span>
+                              
+                            </label>
+                             @endforeach
                         </div>
                     </div>
                 </div>
