@@ -16,7 +16,7 @@ class GoogleAuthController extends Controller
 
         $client = new Google_Client(['client_id' => env('GOOGLE_CLIENT_ID')]);
         $payload = $client->verifyIdToken($idToken);
-        $now = date("Y-m-d H:i:s");
+        $now = now();
         $token = Str::uuid();
 
         if ($payload) {
@@ -25,15 +25,32 @@ class GoogleAuthController extends Controller
             $emailVerified = $payload['email_verified'];
             $name = $payload['name'];
             $profile = $payload['picture'];
-            $user = User::firstOrCreate(
-                ['email' => $email,
-                'name' => $name,
-                'avatar' => $profile,
-                'email_verified_at' => $now,
-                'email_verified' => $emailVerified,
-                'token' => $token,
-                'google_id' => $googleId
+
+            // Check if user with email already exists
+            $user = User::where('email', $email)->first();
+
+            if (!$user) {
+                // User doesn't exist, create new
+                $user = User::create([
+                    'email' => $email,
+                    'name' => $name,
+                    'avatar' => $profile,
+                    'email_verified_at' => $now,
+                    'email_verified' => $emailVerified,
+                    'token' => $token,
+                    'google_id' => $googleId
                 ]);
+            } else {
+                // User already exists, update information including Google ID
+                $user->update([
+                    'name' => $name,
+                    'avatar' => $profile,
+                    'email_verified_at' => $now,
+                    'email_verified' => $emailVerified,
+                    'token' => $token,
+                    'google_id' => $googleId
+                ]);
+            }
 
             return response()->json([
                 'message' => 'User signed in successfully',
@@ -43,4 +60,6 @@ class GoogleAuthController extends Controller
             return response()->json(['message' => 'Invalid token'], 401);
         }
     }
+
+
 }
