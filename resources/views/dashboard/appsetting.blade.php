@@ -3,7 +3,7 @@
 
 <div class="card">
     <div class="card-body">
-       
+
         <form class="auth-login-form mt-2" action="/appsetting/update" method="post">
              @csrf
             <div class="row">
@@ -14,8 +14,8 @@
                          name="package_name" value="{{ $data->package_name }}">
                     </div>
                 </div>
-            
-            
+
+
                 <div class="col-md-12">
                     <div class="mb-1">
                         <label for="server_key">Server Key</label>
@@ -28,29 +28,35 @@
                         </div>
                     </div>
                 </div>
-                
+
                     <div class="col-md-12">
                         <button type="submit"
                                 data-bs-toggle="tooltip"
                                 data-bs-placement="top"
+                                id="demo"
                                 class="btn btn-gradient-primary float-end">Submit</button>
                     </div>
-              
+
             </div>
+
         </form>
     </div>
 </div>
 @endsection
-
 <script>
-    function generate_server_key() {
-        var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        var length = 16;
-        var serverKey = '';
-        for (var i = 0; i < length; i++) {
-            serverKey += chars.charAt(Math.floor(Math.random() * chars.length));
-        }
-        document.getElementById('api_key').value = serverKey;
+    function generate_uuid() {
+        var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random() * 16 | 0,
+                v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+        return uuid;
     }
-</script>
 
+    function generate_server_key() {
+        var uuid = generate_uuid();
+        document.getElementById('api_key').value = uuid;
+    }
+
+
+</script>

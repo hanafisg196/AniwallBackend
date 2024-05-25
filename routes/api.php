@@ -1,11 +1,10 @@
 <?php
 
 use App\Http\Controllers\Api\CategoryApiController;
+use App\Http\Controllers\Api\GoogleAuthController;
 use App\Http\Controllers\Api\SlideApiController;
-use App\Http\Controllers\Api\UserApiController;
 use App\Http\Controllers\Api\WallpaperApiController;
 use App\Http\Middleware\ApiAuthMiddleware;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,5 +28,6 @@ Route::middleware(ApiAuthMiddleware::class)->group(function () {
     Route::get('/wallpaper/categories', [CategoryApiController::class, 'categories'] );
     Route::get('/wallpaper/slide', [SlideApiController::class, 'slide'] );
     Route::get('/wallpaper/wallpapersByCat/{id}', [CategoryApiController::class, 'wallpapersByCat'] );
-
+    Route::post('/wallpaper/googlesignin ', [GoogleAuthController::class, 'googleSignIn']);
 });
+

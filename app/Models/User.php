@@ -25,6 +25,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'avatar',
+        'email_verified',
+        'email_verified_at',
+        'google_id',
+        'token'
+
     ];
 
     /**
