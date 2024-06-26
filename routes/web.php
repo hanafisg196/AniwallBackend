@@ -59,7 +59,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::get('/setting', [SettingController::class, 'index'] );
     Route::get('/appsetting', [AppsettingController::class, 'index'] );
     Route::post('/appsetting/update', [AppsettingController::class, 'update'] );
-    
-   
-   
+
+
+
 });

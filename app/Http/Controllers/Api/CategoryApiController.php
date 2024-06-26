@@ -13,10 +13,10 @@ class CategoryApiController extends Controller
     {
         $page = intval($request->query('page', 1));
         $perPage = intval($request->query('perPage', 5));
-    
+
         $categories = Category::latest()
                     ->paginate($perPage, ['*'], 'page', $page);
-    
+
         return response()->json([
             'data' => $categories->items(),
             [
@@ -31,10 +31,10 @@ class CategoryApiController extends Controller
     }
 
     public function wallpapersByCat(Request $request, int $id) {
-    
+
         $page = intval($request->query('page', 1));
         $perPage = intval($request->query('perPage', 5));
-    
+
         $wallpapers = Wallpaper::where('cat_id', $id)
                      ->paginate($perPage, ['*'], 'page', $page);
 
@@ -49,7 +49,7 @@ class CategoryApiController extends Controller
                 'to' => $wallpapers->lastItem()
             ]
         ]);
-                                        
+
 
     }
 }

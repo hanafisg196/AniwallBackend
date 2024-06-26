@@ -26,11 +26,10 @@ class GoogleAuthController extends Controller
             $name = $payload['name'];
             $profile = $payload['picture'];
 
-            // Check if user with email already exists
             $user = User::where('email', $email)->first();
 
             if (!$user) {
-                // User doesn't exist, create new
+
                 $user = User::create([
                     'email' => $email,
                     'name' => $name,
@@ -41,7 +40,7 @@ class GoogleAuthController extends Controller
                     'google_id' => $googleId
                 ]);
             } else {
-                // User already exists, update information including Google ID
+
                 $user->update([
                     'name' => $name,
                     'avatar' => $profile,
