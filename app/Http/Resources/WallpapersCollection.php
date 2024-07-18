@@ -15,8 +15,8 @@ class WallpapersCollection extends ResourceCollection
     public function toArray(Request $request): array
     {
        return [
-        
-        "data" => WallpapersResource::collection($this->collection)
+
+        "data" => WallpaperResource::collection($this->collection)
 
        ];
     }

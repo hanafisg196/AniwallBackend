@@ -13,7 +13,8 @@ class UserApiController extends Controller
     public function profile(Request $request)
     {
         $user = $request->attributes->get('user');
-
         return response()->json(['user' => $user]);
     }
+
+
 }

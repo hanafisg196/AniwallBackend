@@ -9,11 +9,14 @@ use Illuminate\Http\Request;
 
 class SlideApiController extends Controller
 {
-    public function slide():SlideResourceCollection
+    public function slide()
     {
         $category = Slide::limit(5)->get();
-        return new SlideResourceCollection($category);
+        return response()->json([
+           "data" => $category
+        ]);
+
     }
 
- 
+
 }
