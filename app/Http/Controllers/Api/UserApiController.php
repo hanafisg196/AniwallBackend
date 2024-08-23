@@ -9,11 +9,15 @@ use Illuminate\Http\Request;
 class UserApiController extends Controller
 {
 
-
     public function profile(Request $request)
     {
         $user = $request->attributes->get('user');
         return response()->json(['user' => $user]);
+    }
+
+    public function uploadWallpaper() {
+        $user = auth()->user();
+
     }
 
 
