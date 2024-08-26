@@ -20,11 +20,9 @@ class AdminMiddleware
         {
             return $next($request);
         }
-
         else {
+              abort(404);
+         }
 
-            return  abort(404);
-        }
-       
     }
 }
