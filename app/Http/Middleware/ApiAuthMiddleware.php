@@ -19,7 +19,6 @@ class ApiAuthMiddleware
         $packageName = $request->header('AppId');
         $serverKey = $request->header('apiKey');
 
-
         $token = AppSettings::where('package_name', $packageName)
                                 ->where('api_key', $serverKey)
                                 ->first();
@@ -31,7 +30,7 @@ class ApiAuthMiddleware
                 ]
                 , 401);
          }
-                                
+
         return $next($request);
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class UploadWallpaperRequest extends FormRequest
 {
@@ -24,8 +26,12 @@ class UploadWallpaperRequest extends FormRequest
         return [
             'title' => ['required', 'max:100'],
             'type' => ['required','mimes:jpg,png,mp4','max:20480'],
-            'cat_id' =>['required'],
-            'user_id' =>['required']
          ];
+    }
+
+    protected function failedValidation(Validator $validator){
+        throw new HttpResponseException(response([
+            "errors" => $validator->getMessageBag()
+        ], 400));
     }
 }

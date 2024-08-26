@@ -18,8 +18,6 @@ class UploadWallpaperResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'type'=> $this->type,
-            'cat_id' => $this->cat_id,
-            'user_id' => $this->user_id
         ];
     }
 }
