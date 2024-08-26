@@ -30,8 +30,8 @@ Route::middleware(ApiAuthMiddleware::class)->group(function () {
     Route::get('/wallpaper/categories', [CategoryApiController::class, 'categories']);
     Route::get('/wallpaper/slide', [SlideApiController::class, 'slide']);
     Route::get('/wallpaper/wallpapersByCat/{id}', [CategoryApiController::class, 'wallpapersByCat']);
-    Route::post('/wallpaper/googlesignin ', [GoogleAuthController::class, 'googleSignIn']);
-    Route::middleware(ApiAuthMiddleware::class)->group(function () {
-        Route::get('/wallpaper/userprofile', [UserApiController::class, 'profile']);
+    Route::post('/wallpaper/googlesignin', [GoogleAuthController::class, 'googleSignIn']);
+    Route::middleware('apiAuth')->group(function () {
+        Route::get('/wallpaper/userprofile', [UserApiController::class, 'profile'])->middleware('apiAuth');
     });
 });

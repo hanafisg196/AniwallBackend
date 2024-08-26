@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [LoginController::class, 'index'] )->name('login');
+Route::get('/test', [LoginController::class, 'test'] )->name('login');
 
 Route::post('/login', [LoginController::class, 'doLogin'] );
 
@@ -59,7 +60,4 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::get('/setting', [SettingController::class, 'index'] );
     Route::get('/appsetting', [AppsettingController::class, 'index'] );
     Route::post('/appsetting/update', [AppsettingController::class, 'update'] );
-
-
-
 });

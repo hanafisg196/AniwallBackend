@@ -12,13 +12,13 @@ class WallpaperController extends Controller
     {
         $this->wallpaperService = $wallpaperService;
     }
-    
+
     public function index()
     {
         $data = $this->wallpaperService->getWallpapers();
         $category = $this->wallpaperService->getCategories();
         $slide = $this->wallpaperService->getslide();
-       
+
         return view('dashboard.wallpaper')->with([
             'data' => $data,
              'category' => $category,
@@ -33,7 +33,7 @@ class WallpaperController extends Controller
         $category = $this->wallpaperService->getCategories();
         $slide = $this->wallpaperService->getslide();
 
-        
+
         return view('dashboard.updatewallpaper')->with([
             'data' => $data,
             'category' => $category,
@@ -47,8 +47,8 @@ class WallpaperController extends Controller
             'title' =>'required',
             'type' =>'required|mimes:jpg,png,mp4|max:20480',
             'cat_id' =>'required',
-           
-            
+
+
         ]);
         $this->wallpaperService->createWallpaper($request);
         return redirect()->back()->with('success', 'Wallpaper added successfully');
@@ -58,14 +58,14 @@ class WallpaperController extends Controller
     public function UpdateWallpaper(Request $request, $id)
     {
         $request->validate([
-            'title' =>'required',
+            'title' =>'required|max:100',
             'type' =>'mimes:jpg,png,mp4|max:20480',
             'cat_id' =>'required',
             'resolution' =>'required',
             'thumbnail' =>'mimes:jpg,png,webp|max:1024',
         ]);
 
-        
+
         $this->wallpaperService->editWallpaper($request, $id);
         return redirect('/wallpaper')->with('success', 'Wallpaper Update successfully');
     }
@@ -89,5 +89,5 @@ class WallpaperController extends Controller
            'slide' => $slide
         ]);
     }
-    
+
 }

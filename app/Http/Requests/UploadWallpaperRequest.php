@@ -11,7 +11,7 @@ class UploadWallpaperRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return $this->user() !=null;
     }
 
     /**
@@ -22,7 +22,10 @@ class UploadWallpaperRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
-        ];
+            'title' => ['required', 'max:100'],
+            'type' => ['required','mimes:jpg,png,mp4','max:20480'],
+            'cat_id' =>['required'],
+            'user_id' =>['required']
+         ];
     }
 }
