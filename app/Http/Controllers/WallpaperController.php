@@ -47,8 +47,6 @@ class WallpaperController extends Controller
             'title' =>'required',
             'type' =>'required|mimes:jpg,png,mp4|max:20480',
             'cat_id' =>'required',
-
-
         ]);
         $this->wallpaperService->createWallpaper($request);
         return redirect()->back()->with('success', 'Wallpaper added successfully');
@@ -62,7 +60,7 @@ class WallpaperController extends Controller
             'type' =>'mimes:jpg,png,mp4|max:20480',
             'cat_id' =>'required',
             'resolution' =>'required',
-            'thumbnail' =>'mimes:jpg,png,webp|max:1024',
+            'thumbnail' =>'mimes:jpg,png,webp|max:3072',
         ]);
 
 

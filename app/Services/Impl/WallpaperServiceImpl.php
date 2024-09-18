@@ -16,7 +16,7 @@ use Spatie\Tags\Tag;
 class WallpaperServiceImpl implements WallpaperService
 {
 
- 
+
     public function getWallpapers()
     {
         return Wallpaper::orderBy('id', 'desc')
@@ -27,7 +27,7 @@ class WallpaperServiceImpl implements WallpaperService
     public function getWallpapersById($id)
     {
        return  Wallpaper::find($id);
-       
+
     }
 
     public function getCategories()
@@ -39,15 +39,15 @@ class WallpaperServiceImpl implements WallpaperService
     {
         return Slide::all();
     }
-    
+
     private function createThumbnailImage($imagePath, $thumbnailPath)
     {
-        
+
         $image = Image::make($imagePath);
         $image->resize(300, 533);
         $image->save($thumbnailPath);
         return $thumbnailPath;
-       
+
     }
 
     private function formateSize($file)
@@ -59,7 +59,7 @@ class WallpaperServiceImpl implements WallpaperService
 
     private function getResolution($type,$pathFile)
     {
-       
+
         if($type->getClientOriginalExtension() == 'mp4')
         {
             return '1080 x 1920';
@@ -69,15 +69,15 @@ class WallpaperServiceImpl implements WallpaperService
             $width = $fileInfo[0];
             $height = $fileInfo[1];
             return $width. ' x '. $height;
-            
+
         }
-       
+
     }
- 
+
 
     public function createWallpaper(Request $request)
     {
-        
+
         $title = $request->input('title');
         $cat_id = $request->input('cat_id');
         $slide_id = $request->input('slide_id');
@@ -87,10 +87,10 @@ class WallpaperServiceImpl implements WallpaperService
         $resolution = $this->getResolution(
            $type, $type->path()
         );
-    
+
 
         if ($type->getClientOriginalExtension() == 'mp4') {
-           
+
             $path = $type->store('videos');
             $thumbnailFilename = pathinfo($path, PATHINFO_FILENAME) . '.jpg';
             $wallpaper = new Wallpaper([
@@ -102,7 +102,7 @@ class WallpaperServiceImpl implements WallpaperService
                 'slide_id' => $slide_id,
                 'size'=> $size.'.mb',
                 'user_id' => auth()->user()->id
-                
+
             ]);
 
         } else {
@@ -122,21 +122,21 @@ class WallpaperServiceImpl implements WallpaperService
                 'size'=> $size.'.mb',
                 'resolution' => $resolution,
                 'user_id' => auth()->user()->id
-              
+
             ]);
         }
          $wallpaper->save();
          $wallpaper->detachTags($tags);
          $wallpaper->attachTags($tags);
-           
+
 
         if ($type->getClientMimeType() == 'video/mp4') {
-            
+
             GenerateThumbnailVideo::dispatch($wallpaper);
         }
-        
-        
- 
+
+
+
     }
     public function editWallpaper(Request $request, $id)
     {
@@ -145,8 +145,8 @@ class WallpaperServiceImpl implements WallpaperService
         $cat_id = $request->input('cat_id');
         $slide_id = $request->input('slide_id');
         $resolution = $request->input('resolution');
-      
-    
+
+
         if($request->hasFile('type') && $request->file('type')->isValid())
         {
             // Delete the old type file if it exists
@@ -157,30 +157,30 @@ class WallpaperServiceImpl implements WallpaperService
             $type = $request->file('type');
             $path = ($type->getClientOriginalExtension() == 'mp4') ?
             $type->store('videos') : $type->store('images');
-            
+
         } else{
             // If no new thumbnail file is provided, use the existing path
             $path = $wallpaper->type;
         }
-    
+
         if ($request->hasFile('thumbnail') && $request->file('thumbnail')->isValid()) {
-     
+
             if ($wallpaper->thumbnail) {
                 Storage::delete($wallpaper->thumbnail);
             }
-    
-           
+
+
             $thumb = $request->file('thumbnail');
             $thumbPath = $thumb->store('thumbs');
         } else {
-          
+
             $thumbPath = $wallpaper->thumbnail;
         }
 
         $tags = explode(',', $request->input('tags'));
         $wallpaper->detachTags($tags);
         $wallpaper->attachTags($tags);
-       
+
         $wallpaper->title = $title;
         $wallpaper->cat_id = $cat_id;
         $wallpaper->slide_id = $slide_id;
@@ -188,7 +188,7 @@ class WallpaperServiceImpl implements WallpaperService
         $wallpaper->resolution = $resolution;
         $wallpaper->type = $path;
         $wallpaper->update();
-        
+
     }
     public function deleteWallpaper( $id)
     {
@@ -206,14 +206,14 @@ class WallpaperServiceImpl implements WallpaperService
 
     public function searchWallpaper(Request $request)
     {
-        
+
         $wallpaper = Wallpaper::when($request->has('search'), function($query) use ($request)
         {
             $query->where('title', 'LIKE', '%' . $request->search . '%')
             ->orWhereHas('tags', function($query) use ($request){
                 $query->where('name', 'LIKE', '%' . $request->search . '%');
             });
-            
+
         });
         return $wallpaper->paginate(10);
 
