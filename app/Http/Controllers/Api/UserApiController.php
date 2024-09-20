@@ -13,7 +13,7 @@ use Intervention\Image\Facades\Image;
 
 class UserApiController extends Controller
 {
- 
+
     private const TYPE_VIDEO = 'video/mp4';
     private function user(Request $request)
     {

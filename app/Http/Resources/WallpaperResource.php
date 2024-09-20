@@ -18,6 +18,7 @@ class WallpaperResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'type' => $this->type,
+            'thumbnail' => $this->thumbnail,
             'resolution' => $this->resolution,
             'view' => $this->view,
             'download' => $this->download,
