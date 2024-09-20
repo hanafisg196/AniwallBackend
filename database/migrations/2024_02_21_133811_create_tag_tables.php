@@ -22,8 +22,11 @@ return new class extends Migration
         Schema::create('taggables', function (Blueprint $table) {
             $table->foreignId('tag_id')->constrained()->cascadeOnDelete();
 
-            $table->morphs('taggable');
+            // Manually defining the morphs columns with length limitation for `taggable_type`
+            $table->string('taggable_type', 191);
+            $table->unsignedBigInteger('taggable_id');
 
+            // Add the unique constraint with the limited length column
             $table->unique(['tag_id', 'taggable_id', 'taggable_type']);
         });
     }

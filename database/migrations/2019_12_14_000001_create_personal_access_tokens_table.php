@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('personal_access_tokens', function (Blueprint $table) {
             $table->id();
-            $table->morphs('tokenable');
+            
+            // Manually defining the polymorphic relationship with length limitation
+            $table->string('tokenable_type', 191);
+            $table->unsignedBigInteger('tokenable_id');
+
+            // Add an index on the tokenable fields
+            $table->index(['tokenable_type', 'tokenable_id'], 'tokenable_index');
+
             $table->string('name');
             $table->string('token', 64)->unique();
             $table->text('abilities')->nullable();

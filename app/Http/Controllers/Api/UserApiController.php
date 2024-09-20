@@ -13,7 +13,7 @@ use Intervention\Image\Facades\Image;
 
 class UserApiController extends Controller
 {
-    private $test = "test";
+ 
     private const TYPE_VIDEO = 'video/mp4';
     private function user(Request $request)
     {
@@ -54,10 +54,8 @@ class UserApiController extends Controller
     public function profile(Request $request)
     {
         $user = $this->user($request);
-        $posts = Wallpaper::where('user_id', $user->id)->count();
         return response()->json([
-            'user' => $user,
-            'posts'=> $posts
+            'user' => $user
         ]);
     }
     public function uploadWallpaper(UploadWallpaperRequest $request): JsonResponse
