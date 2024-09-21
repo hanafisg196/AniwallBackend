@@ -67,9 +67,10 @@ class UserApiController extends Controller
     public function profile(Request $request)
     {
         $user = $this->user($request);
-
+        $posts = Wallpaper::where('user_id', $user->id)->count();
         return response()->json([
-            'user' => $user
+            'user' => $user,
+            'posts' => $posts
         ]);
     }
     public function uploadWallpaper(UploadWallpaperRequest $request): JsonResponse
