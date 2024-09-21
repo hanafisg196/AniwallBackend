@@ -149,7 +149,7 @@ class WallpaperServiceImpl implements WallpaperService
 
         if($request->hasFile('type') && $request->file('type')->isValid())
         {
-            // Delete the old type file if it exists
+
             if ($wallpaper->type) {
                 Storage::delete($wallpaper->type);
             }
@@ -159,7 +159,7 @@ class WallpaperServiceImpl implements WallpaperService
             $type->store('videos') : $type->store('images');
 
         } else{
-            // If no new thumbnail file is provided, use the existing path
+
             $path = $wallpaper->type;
         }
 

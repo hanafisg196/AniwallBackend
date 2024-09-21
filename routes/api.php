@@ -35,5 +35,6 @@ Route::middleware(ApiAuthMiddleware::class)->group(function () {
     Route::middleware(AuthenticateUser::class)->group(function () {
         Route::get('/wallpaper/userprofile', [UserApiController::class, 'profile']);
         Route::post('/wallpaper/user/upload', [UserApiController::class, 'uploadWallpaper']);
+        Route::get('/wallpaper/user/listwallpaper', [UserApiController::class, 'wallpapersByuser']);
     });
 });

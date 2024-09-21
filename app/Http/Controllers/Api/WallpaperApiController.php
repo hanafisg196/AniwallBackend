@@ -40,7 +40,8 @@ class WallpaperApiController extends Controller
     {
         $page = intval($request->query('page', 1));
         $perPage = intval($request->query('perPage', 5));
-        $wallpapers = Wallpaper::latest()->paginate($perPage, ['*'], 'page', $page);
+        $wallpapers = Wallpaper::where('review', '=', 0)
+        ->latest()->paginate($perPage, ['*'], 'page', $page);
         $this->dataNotFound($wallpapers);
         return new WallpapersWithPagingCollection($wallpapers);
     }
@@ -49,14 +50,18 @@ class WallpaperApiController extends Controller
     {
         $page = intval($request->query('page', 1));
         $perPage = intval($request->query('perPage', 5));
-        $wallpapers = Wallpaper::orderBy('view', 'desc')->paginate($perPage, ['*'], 'page', $page);
+        $wallpapers = Wallpaper::where('review', '=', 0)
+        ->orderBy('view', 'desc')
+        ->paginate($perPage, ['*'], 'page', $page);
         $this->dataNotFound($wallpapers);
         return new WallpapersWithPagingCollection($wallpapers);
     }
 
     public function random(): WallpapersCollection
     {
-        $wallpapers = Wallpaper::inRandomOrder()->limit(5)->get();
+        $wallpapers = Wallpaper::
+        where('review', '=', 0)
+        ->inRandomOrder()->limit(5)->get();
         $this->dataNotFound($wallpapers);
         return new WallpapersCollection($wallpapers);
     }

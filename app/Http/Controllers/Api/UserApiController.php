@@ -3,8 +3,10 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UploadWallpaperRequest;
 use App\Http\Resources\UploadWallpaperResource;
+use App\Http\Resources\WallpapersWithPagingCollection;
 use App\Jobs\GenerateThumbnailVideo;
 use App\Models\Wallpaper;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -20,6 +22,19 @@ class UserApiController extends Controller
             return response()->json(['error' => 'User Not Found'], 401);
         } else {
             return $user;
+        }
+    }
+    public function dataNotFound($data){
+        if ($data->isEmpty()) {
+            throw new HttpResponseException(
+                response()
+                    ->json([
+                        'errors' => [
+                            'message' => ['wallpaper not found'],
+                        ],
+                    ])
+                    ->setStatusCode(404),
+            );
         }
     }
 
@@ -52,6 +67,7 @@ class UserApiController extends Controller
     public function profile(Request $request)
     {
         $user = $this->user($request);
+
         return response()->json([
             'user' => $user
         ]);
@@ -89,8 +105,14 @@ class UserApiController extends Controller
         return (new UploadWallpaperResource($wallpaper))->response()->setStatusCode(201);
     }
 
-    public function wallpaperByuser(){
-
+    public function wallpapersByuser(Request $request){
+        $user = $this->user($request);
+        $page = intval($request->query('page', 1));
+        $perPage = intval($request->query('perPage', 5));
+        $wallpapers = Wallpaper::where('user_id' ,$user->id)
+        ->latest()->paginate($perPage, ['*'], 'page', $page);
+        $this->dataNotFound($wallpapers);
+        return new WallpapersWithPagingCollection($wallpapers);
     }
 
 

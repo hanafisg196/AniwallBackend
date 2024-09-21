@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class CategoryApiController extends Controller
 {
+
     public function categories(Request $request)
     {
         $page = intval($request->query('page', 1));
