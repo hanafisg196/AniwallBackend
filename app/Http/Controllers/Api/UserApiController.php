@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers\Api;
-
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UploadWallpaperRequest;
 use App\Http\Resources\UploadWallpaperResource;
@@ -89,6 +87,10 @@ class UserApiController extends Controller
         }
 
         return (new UploadWallpaperResource($wallpaper))->response()->setStatusCode(201);
+    }
+
+    public function wallpaperByuser(){
+
     }
 
 
