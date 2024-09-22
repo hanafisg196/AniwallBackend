@@ -58,4 +58,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Wallpaper::class, "user_id", "id");
     }
+    public function favoriteWallpapers()
+    {
+        return $this->belongsToMany(Wallpaper::class,"favorites")->withTimestamps();
+    }
 }

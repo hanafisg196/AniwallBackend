@@ -13,7 +13,6 @@ use Intervention\Image\Facades\Image;
 
 class UserApiController extends Controller
 {
-
     private const TYPE_VIDEO = 'video/mp4';
     private function user(Request $request)
     {
@@ -24,13 +23,14 @@ class UserApiController extends Controller
             return $user;
         }
     }
-    public function dataNotFound($data){
+    private function dataNotFound($data)
+    {
         if ($data->isEmpty()) {
             throw new HttpResponseException(
                 response()
                     ->json([
                         'errors' => [
-                            'message' => ['wallpaper not found'],
+                            'message' => 'wallpaper not found',
                         ],
                     ])
                     ->setStatusCode(404),
@@ -71,7 +71,7 @@ class UserApiController extends Controller
         $user->posts = $posts;
 
         return response()->json([
-            'user' => $user
+            'user' => $user,
         ]);
     }
 
@@ -105,18 +105,52 @@ class UserApiController extends Controller
             GenerateThumbnailVideo::dispatch($wallpaper);
         }
 
-        return (new UploadWallpaperResource($wallpaper))->response()->setStatusCode(201);
+        return (new UploadWallpaperResource($wallpaper))
+        ->response()->setStatusCode(201);
     }
 
-    public function wallpapersByuser(Request $request){
+    public function wallpapersByuser(Request $request)
+    {
         $user = $this->user($request);
         $page = intval($request->query('page', 1));
         $perPage = intval($request->query('perPage', 5));
-        $wallpapers = Wallpaper::where('user_id' ,$user->id)
-        ->latest()->paginate($perPage, ['*'], 'page', $page);
+        $wallpapers = Wallpaper::where('user_id', $user->id)
+            ->latest()
+            ->paginate($perPage, ['*'], 'page', $page);
         $this->dataNotFound($wallpapers);
         return new WallpapersWithPagingCollection($wallpapers);
     }
 
+    public function addFavorite(Request $request, $wallpaperId): JsonResponse
+    {
+        $user = $this->user($request);
+        $user->favoriteWallpapers()->attach($wallpaperId);
+        return response()->json([
+         'message' => 'Wallpaper add to favorites successfully'
+        ])->setStatusCode(201);
 
+    }
+
+    public function removeFavorite(Request $request, $wallpaperId): JsonResponse
+    {
+        $user = $this->user($request);
+        $user->favoriteWallpapers()->detach($wallpaperId);
+        return response()->json([
+           'message' => 'Wallpaper removed from favorites successfully'
+        ])->setStatusCode(200);
+
+    }
+
+    public function listFavorites(Request $request,$userId)
+    {
+        $page = intval($request->query('page', 1));
+        $perPage = intval($request->query('perPage', 5));
+        $user = $this->user($request);
+        $user->id = $userId;
+        $wallpapers = $user->favoriteWallpapers()->latest()
+        ->paginate($perPage, ['*'], 'page', $page);
+        $this->dataNotFound($wallpapers);
+        return new WallpapersWithPagingCollection($wallpapers);
+
+    }
 }
