@@ -121,9 +121,10 @@ class UserApiController extends Controller
         return new WallpapersWithPagingCollection($wallpapers);
     }
 
-    public function addFavorite(Request $request, $wallpaperId): JsonResponse
+    public function addFavorite(Request $request): JsonResponse
     {
         $user = $this->user($request);
+        $wallpaperId = $request->input('wallpaper_id');
         $user->favoriteWallpapers()->attach($wallpaperId);
         return response()->json([
          'message' => 'Wallpaper add to favorites successfully'
@@ -131,9 +132,10 @@ class UserApiController extends Controller
 
     }
 
-    public function removeFavorite(Request $request, $wallpaperId): JsonResponse
+    public function removeFavorite(Request $request): JsonResponse
     {
         $user = $this->user($request);
+        $wallpaperId = $request->input('wallpaper_id');
         $user->favoriteWallpapers()->detach($wallpaperId);
         return response()->json([
            'message' => 'Wallpaper removed from favorites successfully'
