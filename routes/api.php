@@ -33,11 +33,12 @@ Route::middleware(ApiAuthMiddleware::class)->group(function () {
     Route::get('/wallpaper/wallpapersByCat/{id}', [CategoryApiController::class, 'wallpapersByCat']);
     Route::post('/wallpaper/googlesignin', [GoogleAuthController::class, 'googleSignIn']);
     Route::middleware(AuthenticateUser::class)->group(function () {
-        Route::get('/wallpaper/userprofile', [UserApiController::class, 'profile']);
+        Route::get('/wallpaper/user/profile', [UserApiController::class, 'profile']);
         Route::post('/wallpaper/user/upload', [UserApiController::class, 'uploadWallpaper']);
         Route::get('/wallpaper/user/listwallpaper', [UserApiController::class, 'wallpapersByuser']);
         Route::post('/wallpaper/user/savefavorite', [UserApiController::class, 'addFavorite']);
         Route::post('/wallpaper/user/removefavorite', [UserApiController::class, 'removeFavorite']);
+        Route::get('/wallpaper/user/favoritecheck/{id}', [UserApiController::class, 'isFavorite']);
         Route::get('/wallpaper/user/favorites/{userId}', [UserApiController::class, 'listFavorites']);
     });
 });
