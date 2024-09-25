@@ -134,6 +134,14 @@ class UserApiController extends Controller
 
     }
 
+    public function isFavorite(Request $request, $wallpaperId): JsonResponse{
+        $user = $this->user($request);
+        $isFavorite = $user->favoriteWallpapers()->where('wallpaper_id', $wallpaperId)->exists();
+        return response()->json([
+            'isFavorite' => $isFavorite
+        ])->setStatusCode(200);
+    }
+
     public function removeFavorite(Request $request): JsonResponse
     {
         $user = $this->user($request);
