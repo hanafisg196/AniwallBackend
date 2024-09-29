@@ -1,10 +1,10 @@
 @extends('_partials.content')
 @section('content')
-<form class="auth-login-form mt-2" action="/adsmanager/update" method="post">
+<form class="auth-login-form mt-2" action="adsmanager/update" method="post">
         @csrf
-    <div class="card">
+    {{-- <div class="card">
         <div class="card-body">
-           
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="mb-1">
@@ -16,7 +16,7 @@
                             <option value="FACEBOOKBIDDING">
                                 FACEBOOK BIDDING ADMOB
                             </option>
-                          
+
                             <option value="DISABLE">
                                 DISABLE
                             </option>
@@ -90,7 +90,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="card">
         <div class="card-header">
@@ -102,39 +102,39 @@
                     <div class="mb-1">
                         <label for="admob_banner">Admob Banner</label>
                         <input type="text" class="form-control" id="admob_banner" name="admob_banner"
-                               value="">
+                               value="{{$data->admob_banner}}">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-1">
                         <label for="admob_interstitial">Admob Interstitial</label>
                         <input type="text" class="form-control" id="admob_interstitial" name="admob_interstitial"
-                               value="">
+                               value="{{$data->admob_interstitial}}">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-1">
                         <label for="admob_reward">Admob Reward</label>
                         <input type="text" class="form-control" id="admob_reward" name="admob_reward"
-                               value="">
+                               value="{{$data->admob_reward}}">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-1">
                         <label for="admob_open">Admob Open</label>
                         <input type="text" class="form-control" id="admob_open" name="admob_open"
-                               value="">
+                               value="{{$data->admob_open}}">
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="mb-1">
                         <label for="admob_native">Admob Native</label>
                         <input type="text" class="form-control" id="admob_native" name="admob_native"
-                               value="">
+                               value="{{$data->admob_native}}">
                     </div>
 
                     <div class="col-md-12">
-                        <button type="button"
+                        <button type="submit"
                                 data-bs-toggle="tooltip"
                                 data-bs-placement="top"
                                 title="Disable On Demo"

@@ -56,6 +56,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::get('/tags', [TagsController::class, 'index'] );
     Route::get('/notification', [NotificationController::class, 'index'] );
     Route::get('/adsmanager', [AdsmanagerController::class, 'index'] );
+    Route::post('/adsmanager/update', [AdsmanagerController::class, 'update'] );
     Route::get('/setting', [SettingController::class, 'index'] );
     Route::get('/appsetting', [AppsettingController::class, 'index'] );
     Route::post('/appsetting/update', [AppsettingController::class, 'update'] );
