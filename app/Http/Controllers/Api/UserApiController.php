@@ -106,6 +106,9 @@ class UserApiController extends Controller
         }
 
         return (new UploadWallpaperResource($wallpaper))
+        ->additional([
+            'message' => 'Wallpaper uploaded successfully',
+        ])
         ->response()->setStatusCode(201);
     }
 
