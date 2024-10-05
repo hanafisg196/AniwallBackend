@@ -35,7 +35,7 @@ Route::middleware(ApiAuthMiddleware::class)->group(function () {
     Route::middleware(AuthenticateUser::class)->group(function () {
         Route::get('/wallpaper/user/profile', [UserApiController::class, 'profile']);
         Route::post('/wallpaper/user/upload', [UserApiController::class, 'uploadWallpaper']);
-        Route::get('/wallpaper/user/listwallpaper', [UserApiController::class, 'wallpapersByuser']);
+        Route::get('/wallpaper/user/listwallpaper/{userId}', [UserApiController::class, 'wallpapersByuser']);
         Route::post('/wallpaper/user/savefavorite', [UserApiController::class, 'addFavorite']);
         Route::post('/wallpaper/user/removefavorite', [UserApiController::class, 'removeFavorite']);
         Route::get('/wallpaper/user/favorites/check/{wallpaperId}', [UserApiController::class, 'isFavorite']);

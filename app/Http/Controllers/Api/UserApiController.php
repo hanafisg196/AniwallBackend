@@ -112,12 +112,11 @@ class UserApiController extends Controller
         ->response()->setStatusCode(201);
     }
 
-    public function wallpapersByuser(Request $request)
+    public function wallpapersByuser(Request $request, $userId)
     {
-        $user = $this->user($request);
         $page = intval($request->query('page', 1));
         $perPage = intval($request->query('perPage', 5));
-        $wallpapers = Wallpaper::where('user_id', $user->id)
+        $wallpapers = Wallpaper::where('user_id', $userId)
             ->latest()
             ->paginate($perPage, ['*'], 'page', $page);
         $this->dataNotFound($wallpapers);
