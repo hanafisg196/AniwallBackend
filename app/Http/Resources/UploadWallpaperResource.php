@@ -19,7 +19,7 @@ class UploadWallpaperResource extends JsonResource
             'thumbnail' => $this->thumbnail,
             'type' => $this->type,
             'resolution' => $this->resolution,
-            'cat_id' => $this->cat_id,
+            'category' => $this->cat_id,
             'size'=> $this->size,
         ];
 

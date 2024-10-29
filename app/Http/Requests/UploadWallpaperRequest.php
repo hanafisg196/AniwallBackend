@@ -26,7 +26,7 @@ class UploadWallpaperRequest extends FormRequest
         return [
             'title' =>['required','string','max:100'],
             'type' => ['required', 'mimes:jpg,jpeg,png,mp4','max:20480'],
-            'cat_id'=>['required','integer']
+            'category' => ['required', 'integer', 'not_in:0']
          ];
     }
 
