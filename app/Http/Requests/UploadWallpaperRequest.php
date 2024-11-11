@@ -26,8 +26,15 @@ class UploadWallpaperRequest extends FormRequest
         return [
             'title' =>['required','string','max:100'],
             'type' => ['required', 'mimes:jpg,jpeg,png,mp4','max:20480'],
-            'category' => ['required', 'integer', 'not_in:0']
+            'cat_id' => ['required', 'integer', 'not_in:0']
          ];
+    }
+    public function messages(): array
+    {
+        return [
+            'cat_id.required' => 'The category field is required.',
+            'cat_id.not_in' => 'The selected category is invalid.',
+        ];
     }
 
     protected function failedValidation(Validator $validator){
