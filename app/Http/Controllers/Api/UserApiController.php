@@ -104,7 +104,6 @@ class UserApiController extends Controller
         if ($isVideo) {
             GenerateThumbnailVideo::dispatch($wallpaper);
         }
-
         return (new UploadWallpaperResource($wallpaper))
         ->additional([
             'message' => 'Wallpaper uploaded successfully',

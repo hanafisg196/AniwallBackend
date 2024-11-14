@@ -29,6 +29,10 @@
             </i><span class="menu-title text-truncate" data-i18n="appsetting">Wallpaper</span></a>
             </li>
             <li class="nav-item"><a class="d-flex align-items-center"
+            href="/wallpaper"><i data-feather="image">
+            </i><span class="menu-title text-truncate" data-i18n="appsetting">Wallpaper</span></a>
+            </li>
+            <li class="nav-item"><a class="d-flex align-items-center"
             href="/notification"><i data-feather="bell">
             </i><span class="menu-title text-truncate" data-i18n="appsetting">Notification</span></a>
             </li>
@@ -44,7 +48,7 @@
                 href="/appsetting"><i data-feather="settings">
                </i><span class="menu-title text-truncate" data-i18n="appsetting">Setting</span></a>
                </li>
-            
+
         </ul>
     </div>
 </div>

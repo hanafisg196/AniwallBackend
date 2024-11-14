@@ -176,6 +176,8 @@ return [
         App\Providers\DasbordServiceProvider::class,
         App\Providers\AppSettingServiceProvider::class,
         App\Providers\AdServiceProvider::class,
+        App\Providers\ReportServiceProvider::class,
+        App\Providers\UserServiceProvider::class,
         Spatie\Tags\TagsServiceProvider::class,
         ProtoneMedia\LaravelFFMpeg\Support\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,

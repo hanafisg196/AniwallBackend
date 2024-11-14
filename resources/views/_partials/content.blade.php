@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="loading" lang="en" 
+<html class="loading" lang="en"
 data-textdirection="ltr">
 @include('_partials/head')
 
@@ -40,11 +40,20 @@ data-textdirection="ltr">
                 href="/wallpaper"><i data-feather="image">
             </i><span class="menu-title text-truncate" data-i18n="appsetting">Wallpaper</span></a>
             </li>
-
             <li class=" nav-item {{ request()->segment(1)=='review'? 'active' : '' }}">
                 <a class="d-flex align-items-center"
                 href="/review"><i data-feather="check-square">
             </i><span class="menu-title text-truncate" data-i18n="appsetting">Review</span></a>
+            </li>
+            <li class="nav-item {{request()->segment(1)=='users'? 'active' : ''}}">
+                <a class="d-flex align-items-center"
+                href="/users"><i data-feather="user">
+            </i><span class="menu-title text-truncate" data-i18n="appsetting">User</span></a>
+            </li>
+            <li class="nav-item {{request()->segment(1)=='report'? 'active' : ''}}">
+                <a class="d-flex align-items-center"
+                href="/report"><i data-feather="flag">
+            </i><span class="menu-title text-truncate" data-i18n="appsetting">Report</span></a>
             </li>
 
             <li class=" nav-item {{ request()->segment(1)=='slide'? 'active' : '' }}">

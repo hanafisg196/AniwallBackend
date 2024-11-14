@@ -3,7 +3,6 @@
 use App\Http\Controllers\AdsmanagerController;
 use App\Http\Controllers\AppsettingController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ColorController;
 use App\Http\Controllers\DasboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NotificationController;
@@ -11,6 +10,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\TagsController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WallpaperController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -29,7 +29,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [LoginController::class, 'index'] )->name('login');
-
 Route::post('/login', [LoginController::class, 'doLogin'] );
 
 //admin routes
@@ -60,4 +59,6 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::get('/setting', [SettingController::class, 'index'] );
     Route::get('/appsetting', [AppsettingController::class, 'index'] );
     Route::post('/appsetting/update', [AppsettingController::class, 'update'] );
+    Route::get('/users', [UserController::class, 'index'] )->name('users');
+    Route::get('/report', [UserController::class, 'index'] )->name('report');
 });

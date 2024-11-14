@@ -30,6 +30,7 @@ Route::middleware(ApiAuthMiddleware::class)->group(function () {
     Route::get('/wallpaper/random', [WallpaperApiController::class, 'random']);
     Route::get('/wallpaper/categories', [CategoryApiController::class, 'categories']);
     Route::get('/wallpaper/slide', [SlideApiController::class, 'slide']);
+    Route::get('/wallpaper/slide/wallpapers/{slideId}', [SlideApiController::class, 'slideWallpapers']);
     Route::get('/wallpaper/wallpapersByCat/{id}', [CategoryApiController::class, 'wallpapersByCat']);
     Route::post('/wallpaper/googlesignin', [GoogleAuthController::class, 'googleSignIn']);
     Route::middleware(AuthenticateUser::class)->group(function () {
