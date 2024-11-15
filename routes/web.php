@@ -13,6 +13,8 @@ use App\Http\Controllers\TagsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WallpaperController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Mail\ReportWallpaper;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
