@@ -18,4 +18,5 @@ class UserController extends Controller
         $data = $this->userService->getUsers();
         return view('dashboard.user')->with('data', $data);
     }
+
 }

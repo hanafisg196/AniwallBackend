@@ -49,11 +49,12 @@
     <div class="container">
         <h5>Test Report</h5>
         <p>Hello Dev, your user has made a report. You can see the details below:</p>
-        <p class="label">Reporter Name:<span class="value">John Doe</span></p>
-        <p class="label">Reporter Email:<span class="value">johndoe@example.com</span></p>
-        <p class="label">Wallpaper ID:<span class="value">12345</span></p>
-        <p class="label">Wallpaper Owner Name:<span class="value">Jane Smith</span></p>
-        <p class="label">Wallpaper Owner Email:<span class="value">janesmith@example.com</span></p>
+        <p class="label">Reporter Email:<span class="value">{{$reporterEmail}}</span></p>
+        <p class="label">Repor Token:<span class="value">{{$token}}</span></p>
+        <p class="label">Description:<span class="value">{{$description}}</span></p>
+        <p class="label">Wallpaper ID:<span class="value">{{$wallpaperId}}</span></p>
+        <p class="label">Wallpaper Owner Name:<span class="value">{{$ownerName}}</span></p>
+        <p class="label">Wallpaper Owner Email:<span class="value">{{$ownerEmail}}</span></p>
         <div class="footer">Thank you for reviewing this report.</div>
     </div>
 </body>

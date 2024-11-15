@@ -20,12 +20,11 @@ class ReportWallpaper extends Mailable
      */
     public function __construct(
         protected $wallpaperId,
-        protected $reportToken,
-        protected $reporterName,
-        protected $reporterEmail,
-        protected $desc,
-        protected $ownerName,
-        protected $ownerEmail,
+        public $token,
+        public $reporterEmail,
+        public $description,
+        public $ownerName,
+        public $ownerEmail,
 
     )
     {
@@ -51,10 +50,11 @@ class ReportWallpaper extends Mailable
             view: 'dashboard.report-mail',
             with:[
                 'wallpaperId' => $this->wallpaperId,
-                'reportToken' => $this->reportToken,
-                'reporterName' => $this->reporterName,
+                'token' => $this->token,
                 'reporterEmail' => $this->reporterEmail,
-                'wallpaperId' => $this->wallpaperId,
+                'description' => $this->description,
+                'ownerName' => $this->ownerName,
+                'ownerEmail' => $this->ownerEmail,
             ]
         );
     }

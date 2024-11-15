@@ -62,5 +62,5 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::get('/appsetting', [AppsettingController::class, 'index'] );
     Route::post('/appsetting/update', [AppsettingController::class, 'update'] );
     Route::get('/users', [UserController::class, 'index'] )->name('users');
-    Route::get('/report', [UserController::class, 'index'] )->name('report');
+    Route::get('/report', [UserController::class, 'test'] )->name('report');
 });

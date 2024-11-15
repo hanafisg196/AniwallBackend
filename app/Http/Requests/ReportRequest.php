@@ -2,11 +2,10 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
-
-class FavoriteWallpaperRequest extends FormRequest
+class ReportRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +23,15 @@ class FavoriteWallpaperRequest extends FormRequest
     public function rules(): array
     {
         return [
-           "user_id"=> "required",
-           "wallpaper_id"=> "required",
+            'reporter_email' =>['required','email'],
+            'description' => ['required', 'string']
+         ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'reporter_email.required' => 'The email field is required.',
         ];
     }
 

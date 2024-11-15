@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CategoryApiController;
 use App\Http\Controllers\Api\GoogleAuthController;
+use App\Http\Controllers\Api\ReportApiController;
 use App\Http\Controllers\Api\SlideApiController;
 use App\Http\Controllers\Api\WallpaperApiController;
 use App\Http\Controllers\Api\UserApiController;
@@ -33,6 +34,7 @@ Route::middleware(ApiAuthMiddleware::class)->group(function () {
     Route::get('/wallpaper/slide/wallpapers/{slideId}', [SlideApiController::class, 'slideWallpapers']);
     Route::get('/wallpaper/wallpapersByCat/{id}', [CategoryApiController::class, 'wallpapersByCat']);
     Route::post('/wallpaper/googlesignin', [GoogleAuthController::class, 'googleSignIn']);
+    Route::post('/wallpaper/report/{wallpaperId}', [ReportApiController::class, 'sendReport']);
     Route::middleware(AuthenticateUser::class)->group(function () {
         Route::get('/wallpaper/user/profile', [UserApiController::class, 'profile']);
         Route::post('/wallpaper/user/upload', [UserApiController::class, 'uploadWallpaper']);

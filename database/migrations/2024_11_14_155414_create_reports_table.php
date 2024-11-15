@@ -14,14 +14,15 @@ return new class extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('report_sku')->unique();
+            $table->string('report_token')->unique();
             $table->text('description');
-            $table->string('reporter_name');
             $table->string('reporter_email');
             $table->string('owner_name');
             $table->string('owner_email');
-            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('wallpaper_id');
+
+            $table->foreign("wallpaper_id")->on("wallpapers")->references("id");
+
 
         });
     }
