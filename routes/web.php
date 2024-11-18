@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DasboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SlideController;
@@ -62,5 +63,5 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::get('/appsetting', [AppsettingController::class, 'index'] );
     Route::post('/appsetting/update', [AppsettingController::class, 'update'] );
     Route::get('/users', [UserController::class, 'index'] )->name('users');
-    Route::get('/report', [UserController::class, 'test'] )->name('report');
+    Route::get('/report', [ReportController::class, 'index'] )->name('report');
 });

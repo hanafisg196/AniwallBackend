@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CategoryApiController;
 use App\Http\Controllers\Api\GoogleAuthController;
+use App\Http\Controllers\Api\NotificationApiController;
 use App\Http\Controllers\Api\ReportApiController;
 use App\Http\Controllers\Api\SlideApiController;
 use App\Http\Controllers\Api\WallpaperApiController;
@@ -21,8 +22,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
-
 Route::middleware(ApiAuthMiddleware::class)->group(function () {
     Route::get('/wallpaper/test', [WallpaperApiController::class, 'test']);
     Route::get('/wallpaper/latest', [WallpaperApiController::class, 'latest']);
@@ -35,6 +34,7 @@ Route::middleware(ApiAuthMiddleware::class)->group(function () {
     Route::get('/wallpaper/wallpapersByCat/{id}', [CategoryApiController::class, 'wallpapersByCat']);
     Route::post('/wallpaper/googlesignin', [GoogleAuthController::class, 'googleSignIn']);
     Route::post('/wallpaper/report/{wallpaperId}', [ReportApiController::class, 'sendReport']);
+    Route::post('/wallpaper/notification/', [NotificationApiController::class, 'sendNotification']);
     Route::middleware(AuthenticateUser::class)->group(function () {
         Route::get('/wallpaper/user/profile', [UserApiController::class, 'profile']);
         Route::post('/wallpaper/user/upload', [UserApiController::class, 'uploadWallpaper']);

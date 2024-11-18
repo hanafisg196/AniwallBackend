@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Exceptions\HttpResponseException;
 class SlideApiController extends Controller
 {
-
     private function dataNotFound($data)
     {
         if ($data->isEmpty()) {
@@ -29,19 +28,18 @@ class SlideApiController extends Controller
     {
         $slide = Slide::limit(5)->get();
         return response()->json([
-           "data" => $slide
+            'data' => $slide,
         ]);
-
     }
 
-    public function slideWallpapers(Request $request, $slideId){
+    public function slideWallpapers(Request $request, $slideId)
+    {
         $page = intval($request->query('page', 1));
         $perPage = intval($request->query('perPage', default: 5));
         $wallpapers = Wallpaper::where('slide_id', $slideId)
-        ->latest()->paginate($perPage, ['*'], 'page', $page);
+            ->latest()
+            ->paginate($perPage, ['*'], 'page', $page);
         $this->dataNotFound($wallpapers);
         return new WallpapersWithPagingCollection($wallpapers);
     }
-
-
 }
