@@ -3,26 +3,28 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Wallpaper;
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\Messaging\CloudMessage;
 
 class NotificationApiController extends Controller
 {
-    public function sendNotification(){
+    public function sendNotification($wallpaperId){
         $credentials = (new Factory)->withServiceAccount(base_path('animwall-c2259-firebase-adminsdk-20yoo-a45f358d99.json'));
         $messaging = $credentials->createMessaging();
+        $wallpaper = Wallpaper::find($wallpaperId);
         $message = CloudMessage::fromArray([
             "notification" => [
-                "title" => "test notif",
-                "body" => "This Body Notif"
+                "title" => "New Wallpaper Uploaded",
+                "body" => "Check out the new wallpaper: " . $wallpaper->title
+            ],
+            "data" => [
+                "id" => $wallpaper->id
             ],
             "topic" => "global"
         ]);
         $messaging->send($message);
-        return response()->json("Sending Notif is work");
+        return response()->json("send notification success");
     }
-
-
 
 }
