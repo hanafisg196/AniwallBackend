@@ -19,10 +19,10 @@ class NotificationApiController extends Controller
         $message = CloudMessage::fromArray([
             "notification" => [
                 "title" => "New Wallpaper Uploaded",
-                "body" => "Check out the new wallpaper: " . $wallpaper->title
+                "body" => "Check out the new wallpaper: " . $wallpaper->title,
+                'click_action' => $deepLink
             ],
             "data" => [
-                "deepLink" => $deepLink,
                 "id" => $wallpaper->id
             ],
             "topic" => "global"
