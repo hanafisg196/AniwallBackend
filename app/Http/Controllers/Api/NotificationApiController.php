@@ -20,7 +20,7 @@ class NotificationApiController extends Controller
             "notification" => [
                 "title" => "New Wallpaper Uploaded",
                 "body" => "Check out the new wallpaper: " . $wallpaper->title,
-                'click_action' => 'OPEN_WALLPAPER_DETAIL'
+                'click_action' => $deepLink
             ],
             "data" => [
                 "id" => $wallpaper->id
