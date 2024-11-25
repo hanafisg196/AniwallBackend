@@ -34,8 +34,9 @@ Route::middleware(ApiAuthMiddleware::class)->group(function () {
     Route::get('/wallpaper/wallpapersByCat/{id}', [CategoryApiController::class, 'wallpapersByCat']);
     Route::post('/wallpaper/googlesignin', [GoogleAuthController::class, 'googleSignIn']);
     Route::post('/wallpaper/report/{wallpaperId}', [ReportApiController::class, 'sendReport']);
+    Route::post('/wallpaper/notification/token', [NotificationApiController::class, 'sendToken'] );
     Route::post('/wallpaper/notification/{wallpaperId}', [NotificationApiController::class, 'sendNotification']);
-    Route::middleware(AuthenticateUser::class)->group(function () {
+    Route::middleware(AuthenticateUser::class)->group(callback: function () {
         Route::get('/wallpaper/user/profile', [UserApiController::class, 'profile']);
         Route::post('/wallpaper/user/upload', [UserApiController::class, 'uploadWallpaper']);
         Route::get('/wallpaper/user/listwallpaper/{userId}', [UserApiController::class, 'wallpapersByuser']);
