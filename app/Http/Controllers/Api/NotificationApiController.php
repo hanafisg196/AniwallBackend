@@ -11,25 +11,29 @@ use Kreait\Firebase\Messaging\CloudMessage;
 
 class NotificationApiController extends Controller
 {
-    public function sendNotification($wallpaperId){
+    public function sendNotification($wallpaperId)
+    {
         $credentials = (new Factory)->withServiceAccount(base_path('firebase-service.json'));
         $messaging = $credentials->createMessaging();
         $wallpaper = Wallpaper::find($wallpaperId);
+
         $deepLink = "https://kyoani-publisher.xyz/wallpaper/" . $wallpaper->id;
+
+        // Kirim pesan hanya dengan properti "data"
         $message = CloudMessage::fromArray([
-            "notification" => [
+            "data" => [
                 "title" => "New Wallpaper Uploaded",
                 "body" => "Check out the new wallpaper: " . $wallpaper->title,
-            ],
-            "data" => [
-                "id" => $wallpaper->id,
-                'link' => $deepLink
+                "link" => $deepLink
             ],
             "topic" => "global"
         ]);
+
         $messaging->send($message);
+
         return response()->json("send notification success");
     }
+
 
     public function sendToken(Request $request){
        $validate =  $request->validate([
