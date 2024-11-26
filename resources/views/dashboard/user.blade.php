@@ -35,7 +35,7 @@
                                         <img src="{{asset('plugins/app-assets/images/no-image.png')}}" alt="" class="rounded-circle"
                                         alt="Profile Picture" style="width: 50px; height: 50px; object-fit: cover;">
                                         @else
-                                        <img src="{{ $item->avatar }}" alt="" class="rounded-circle"
+                                        <img src="{{$item->avatar}}" alt="" class="rounded-circle"
                                         alt="Profile Picture" style="width: 50px; height: 50px; object-fit: cover;">
                                         @endif
                                     </td>

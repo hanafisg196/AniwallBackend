@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'is_admin' => 1,
             'password' => bcrypt('rahasia'),
-            'token' => $token
+            'token' => $token,
+            'avatar'=> 'https://i.ibb.co.com/4f5dzqF/0fb057b1927bc50d55cf7946071dc3fd.jpg'
         ]);
 
         Category::create([
