@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\WallpaperDetailResource;
-use App\Http\Resources\WallpaperResource;
 use App\Http\Resources\WallpapersCollection;
 use App\Http\Resources\WallpapersWithPagingCollection;
 use App\Http\Resources\WallpaperUserDetailCollection;
@@ -79,9 +78,11 @@ class WallpaperApiController extends Controller
         $page = intval($request->query('page', 1));
         $perPage = intval($request->query('perPage', 5));
         $wallpapers = Wallpaper::with('users')->where('user_id', $userId)
+            ->where('review', '=', 0)
             ->latest()
             ->paginate($perPage, ['*'], 'page', $page);
         $this->dataNotFound($wallpapers);
         return new WallpaperUserDetailCollection($wallpapers);
     }
+
 }

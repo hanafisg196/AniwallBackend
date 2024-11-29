@@ -37,6 +37,7 @@ class SlideApiController extends Controller
         $page = intval($request->query('page', 1));
         $perPage = intval($request->query('perPage', default: 5));
         $wallpapers = Wallpaper::where('slide_id', $slideId)
+           ->where('review', '=', 0)
             ->latest()
             ->paginate($perPage, ['*'], 'page', $page);
         $this->dataNotFound($wallpapers);

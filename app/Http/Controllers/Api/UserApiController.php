@@ -122,8 +122,6 @@ class UserApiController extends Controller
         return new WallpapersWithPagingCollection($wallpapers);
     }
 
-
-
     public function addFavorite(Request $request): JsonResponse
     {
         $user = $this->user($request);
