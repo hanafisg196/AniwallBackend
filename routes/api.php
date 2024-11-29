@@ -37,10 +37,10 @@ Route::middleware(ApiAuthMiddleware::class)->group(function () {
     Route::post('/wallpaper/report/{wallpaperId}', [ReportApiController::class, 'sendReport']);
     Route::post('/wallpaper/notification/token', [NotificationApiController::class, 'sendToken'] );
     Route::post('/wallpaper/notification/{wallpaperId}', [NotificationApiController::class, 'sendNotification']);
+    Route::get('/wallpaper/user/listwallpaper/{userId}', [UserApiController::class, 'wallpapersByuser']);
     Route::middleware(AuthenticateUser::class)->group(callback: function () {
         Route::get('/wallpaper/user/profile', [UserApiController::class, 'profile']);
         Route::post('/wallpaper/user/upload', [UserApiController::class, 'uploadWallpaper']);
-        Route::get('/wallpaper/user/listwallpaper/{userId}', [UserApiController::class, 'wallpapersByuser']);
         Route::post('/wallpaper/user/savefavorite', [UserApiController::class, 'addFavorite']);
         Route::post('/wallpaper/user/removefavorite', [UserApiController::class, 'removeFavorite']);
         Route::get('/wallpaper/user/favorites/check/{wallpaperId}', [UserApiController::class, 'isFavorite']);
