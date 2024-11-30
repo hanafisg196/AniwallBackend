@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\WallpaperDetailResource;
+use App\Http\Resources\WallpaperOwnerResource;
 use App\Http\Resources\WallpapersCollection;
 use App\Http\Resources\WallpapersWithPagingCollection;
-use App\Http\Resources\WallpaperUserDetailCollection;
+use App\Models\User;
 use App\Models\Wallpaper;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
@@ -77,12 +78,16 @@ class WallpaperApiController extends Controller
     public function wallpaperUserDetail(Request $request, $userId){
         $page = intval($request->query('page', 1));
         $perPage = intval($request->query('perPage', 5));
-        $wallpapers = Wallpaper::with('users')->where('user_id', $userId)
-            ->where('review', '=', 0)
-            ->latest()
+        $wallpapers = Wallpaper::where('user_id', $userId)
+            ->where('review', '=', 0)->latest()
             ->paginate($perPage, ['*'], 'page', $page);
         $this->dataNotFound($wallpapers);
-        return new WallpaperUserDetailCollection($wallpapers);
+        return new WallpapersWithPagingCollection($wallpapers);
+    }
+
+    public function wallpapersOwner($userId):WallpaperOwnerResource{
+        $user = User::find($userId);
+        return new WallpaperOwnerResource($user);
     }
 
 }

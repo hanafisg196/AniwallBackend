@@ -29,6 +29,7 @@ Route::middleware(ApiAuthMiddleware::class)->group(function () {
     Route::get('/wallpaper/detail/{id}', [WallpaperApiController::class, 'detail']);
     Route::get('/wallpaper/random', [WallpaperApiController::class, 'random']);
     Route::get('/wallpapers/user/detail/{userId}', [WallpaperApiController::class, 'wallpaperUserDetail']);
+    Route::get('/wallpapers/owner/{userId}', [WallpaperApiController::class, 'wallpapersOwner']);
     Route::get('/wallpaper/categories', [CategoryApiController::class, 'categories']);
     Route::get('/wallpaper/slide', [SlideApiController::class, 'slide']);
     Route::get('/wallpaper/slide/wallpapers/{slideId}', [SlideApiController::class, 'slideWallpapers']);
