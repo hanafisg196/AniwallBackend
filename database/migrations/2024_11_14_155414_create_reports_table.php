@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('reporter_email');
             $table->string('owner_name');
             $table->string('owner_email');
+            $table->string('wallpaper_name');
             $table->unsignedBigInteger('wallpaper_id');
 
             $table->foreign("wallpaper_id")->on("wallpapers")->references("id");

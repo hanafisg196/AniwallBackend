@@ -25,6 +25,7 @@ class ReportWallpaper extends Mailable
         public $description,
         public $ownerName,
         public $ownerEmail,
+        public $wallpaperName,
 
     )
     {
@@ -55,6 +56,7 @@ class ReportWallpaper extends Mailable
                 'description' => $this->description,
                 'ownerName' => $this->ownerName,
                 'ownerEmail' => $this->ownerEmail,
+                'wallpaperName' => $this->wallpaperName,
             ]
         );
     }

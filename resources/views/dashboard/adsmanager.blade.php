@@ -100,6 +100,13 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="mb-1">
+                        <label for="admob_app_id">Admob App Id</label>
+                        <input type="text" class="form-control" id="admob_app_id" name="admob_app_id"
+                               value="{{$data->admob_app_id}}">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-1">
                         <label for="admob_banner">Admob Banner</label>
                         <input type="text" class="form-control" id="admob_banner" name="admob_banner"
                                value="{{$data->admob_banner}}">
@@ -132,14 +139,27 @@
                         <input type="text" class="form-control" id="admob_native" name="admob_native"
                                value="{{$data->admob_native}}">
                     </div>
-
-                    <div class="col-md-12">
-                        <button type="submit"
-                                data-bs-toggle="tooltip"
-                                data-bs-placement="top"
-                                title="Disable On Demo"
-                                class="btn btn-gradient-primary float-end">Submit</button>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-1">
+                        <label for="native_item">Native Between Item</label>
+                        <input type="text" class="form-control" id="native_item" name="native_item"
+                               value="{{$data->native_item}}">
                     </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-1">
+                        <label for="intestial_click">Interstitial Click</label>
+                        <input type="text" class="form-control" id="intestial_click" name="intestial_click"
+                               value="{{$data->intestial_click}}">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <button type="submit"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title="Disable On Demo"
+                            class="btn btn-gradient-primary float-end">Save</button>
                 </div>
             </div>
         </div>

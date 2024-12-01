@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('ads', function (Blueprint $table) {
             $table->id();
+            $table->string('admob_app_id');
             $table->string('admob_banner');
             $table->string('admob_native');
             $table->string('admob_interstitial');
             $table->string('admob_open');
             $table->string('admob_reward');
+            $table->tinyInteger('intestial_click')->nullable();
+            $table->tinyInteger('native_item')->nullable();
             $table->timestamps();
         });
     }

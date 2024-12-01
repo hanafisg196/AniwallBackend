@@ -53,6 +53,7 @@
         <p class="label">Repor Token:<span class="value">{{$token}}</span></p>
         <p class="label">Description:<span class="value">{{$description}}</span></p>
         <p class="label">Wallpaper ID:<span class="value">{{$wallpaperId}}</span></p>
+        <p class="label">Wallpaper Name:<span class="value">{{$wallpaperName}}</span></p>
         <p class="label">Wallpaper Owner Name:<span class="value">{{$ownerName}}</span></p>
         <p class="label">Wallpaper Owner Email:<span class="value">{{$ownerEmail}}</span></p>
         <div class="footer">Thank you for reviewing this report.</div>

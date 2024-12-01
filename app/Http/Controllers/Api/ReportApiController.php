@@ -19,6 +19,7 @@ class ReportApiController extends Controller
         $data = $requets->validated();
         $report = new Report($data);
         $report->wallpaper_id = $wallpaperId;
+        $report->wallpaper_name = $wallpaper->title;
         $report->report_token = $token;
         $report->owner_email = $wallpaper->users->email;
         $report->owner_name = $wallpaper->users->name;
@@ -30,6 +31,7 @@ class ReportApiController extends Controller
             $report->decsription,
             $report->owner_name,
             $report->owner_email,
+            $report->wallpaper_name
         ));
         return (new ReportResource($report))
         ->additional([

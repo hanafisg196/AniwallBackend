@@ -20,6 +20,7 @@ class ReportResource extends JsonResource
             'owner_name' => $this->owner_name,
             'owner_email' => $this->owner_email,
             'report_token'=> $this->report_token,
+            'wallpaper_name'=> $this->wallpaper_name,
         ];
 
     }

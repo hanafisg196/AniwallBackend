@@ -69,7 +69,6 @@ class UserApiController extends Controller
         $user = $this->user($request);
         $posts = Wallpaper::where('user_id', $user->id)->count();
         $user->posts = $posts;
-
         return response()->json([
             'user' => $user,
         ]);
