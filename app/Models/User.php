@@ -12,36 +12,22 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-
     protected $primaryKey = 'id';
-    protected $guarded =['id'];
+    protected $guarded = ['id'];
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'avatar',
-        'email_verified',
-        'email_verified_at',
-        'google_id',
-        'token'
-
-    ];
+    protected $fillable = ['name', 'email', 'password', 'avatar', 'email_verified', 'email_verified_at', 'google_id', 'token'];
 
     /**
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
     /**
      * The attributes that should be cast.
@@ -53,13 +39,16 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-
     public function wallpapers()
     {
-        return $this->hasMany(Wallpaper::class, "user_id", "id");
+        return $this->hasMany(Wallpaper::class, 'user_id', 'id');
     }
     public function favoriteWallpapers()
     {
-        return $this->belongsToMany(Wallpaper::class,"favorites")->withTimestamps();
+        return $this->belongsToMany(Wallpaper::class, 'favorites')->withTimestamps();
+    }
+    public function getAuthPasswordName()
+    {
+        return 'password';
     }
 }
