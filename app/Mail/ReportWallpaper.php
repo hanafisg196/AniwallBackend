@@ -38,7 +38,7 @@ class ReportWallpaper extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('anisukdev@gmail.com', 'Anisuki Report'),
+            from: new Address('anisukidev01@gmail.com', 'Anisuki Report'),
             subject: 'Wallpaper Report',
         );
     }
