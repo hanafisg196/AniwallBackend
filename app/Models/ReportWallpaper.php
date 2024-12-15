@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Report extends Model
+class ReportWallpaper extends Model
 {
-    use HasFactory;
     protected $primaryKey = 'id';
     protected $guarded = ['id'];
     protected $fillable = [
@@ -18,11 +16,5 @@ class Report extends Model
         'owner_name',
         'owner_email',
         'report_token'
-
     ];
-
-    public function wallpapers()
-    {
-        return $this->belongsTo(Wallpaper::class, 'wallpaper_id', 'id');
-    }
 }

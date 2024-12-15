@@ -33,10 +33,4 @@ class Wallpaper extends Model
         return $this->belongsToMany(User::class,"favorites")->withTimestamps();
     }
 
-    public function reports()
-    {
-        return $this->hasMany(Report::class, 'wallpaper_id', 'id');
-    }
-
-
 }

@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reports', function (Blueprint $table) {
+        Schema::create('report_wallpapers', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('report_token')->unique();
             $table->text('description');
             $table->string('reporter_email');
@@ -21,10 +20,7 @@ return new class extends Migration
             $table->string('owner_email');
             $table->string('wallpaper_name');
             $table->unsignedBigInteger('wallpaper_id');
-
-            $table->foreign("wallpaper_id")->on("wallpapers")->references("id");
-
-
+            $table->timestamps();
         });
     }
 
@@ -33,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reports');
+        Schema::dropIfExists('report_wallpapers');
     }
 };

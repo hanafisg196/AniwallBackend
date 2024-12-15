@@ -47,6 +47,7 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Wallpaper::class, 'favorites')->withTimestamps();
     }
+
     public function getAuthPasswordName()
     {
         return 'password';
