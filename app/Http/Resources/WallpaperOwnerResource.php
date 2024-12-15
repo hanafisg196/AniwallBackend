@@ -18,6 +18,7 @@ class WallpaperOwnerResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'avatar' => $this->avatar,
+            'id' => $this->id
         ];
     }
 }
