@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('admob_interstitial');
             $table->string('admob_open');
             $table->string('admob_reward');
-            $table->tinyInteger('intestial_click')->nullable();
+            $table->tinyInteger('interstitial_click')->nullable();
             $table->tinyInteger('native_item')->nullable();
             $table->timestamps();
         });

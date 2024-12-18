@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AdsController;
 use App\Http\Controllers\Api\CategoryApiController;
 use App\Http\Controllers\Api\GoogleAuthController;
 use App\Http\Controllers\Api\NotificationApiController;
@@ -23,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::middleware(ApiAuthMiddleware::class)->group(function () {
+    Route::get('/ads', [AdsController::class, 'getAds']);
     Route::get('/wallpaper/test', [WallpaperApiController::class, 'test']);
     Route::get('/wallpaper/latest', [WallpaperApiController::class, 'latest']);
     Route::get('/wallpaper/popular', [WallpaperApiController::class, 'popular']);
