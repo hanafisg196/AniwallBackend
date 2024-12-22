@@ -28,13 +28,18 @@ class WallpaperDetailResource extends JsonResource
             'size' => $this->size,
             'cat_id' => $this->cat_id,
             'user_id' => $this->user_id,
-            'users' => $this->whenLoaded('users', function (){
+            'category' => $this->whenLoaded('category', function () {
+                return [
+                    'name' => $this->category->name,
+                ];
+            }),
+            'users' => $this->whenLoaded('users', function () {
                 return [
                     'id' => $this->users->id,
                     'name' => $this->users->name,
                     'avatar' => $this->users->avatar,
                 ];
-            })
+            }),
         ];
     }
 }

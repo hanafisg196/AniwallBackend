@@ -41,6 +41,7 @@ Route::middleware(ApiAuthMiddleware::class)->group(function () {
     Route::post('/user/report/{userId}', [ReportApiController::class, 'sendReportUser']);
     Route::post('/wallpaper/notification/token', [NotificationApiController::class, 'sendToken'] );
     Route::post('/wallpaper/notification/{wallpaperId}', [NotificationApiController::class, 'sendNotification']);
+    Route::get('/wallpaper/search/{keyword}', [WallpaperApiController::class, 'searchWallpaper']);
     Route::middleware(AuthenticateUser::class)->group(callback: function () {
         Route::get('/wallpaper/user/profile', [UserApiController::class, 'profile']);
         Route::post('/wallpaper/user/upload', [UserApiController::class, 'uploadWallpaper']);

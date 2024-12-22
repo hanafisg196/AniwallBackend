@@ -38,7 +38,7 @@ class WallpaperApiController extends Controller
             ->setStatusCode(200);
     }
 
-    public function latest(Request $request)
+    public function latest(Request $request): WallpapersWithPagingCollection
     {
         $page = intval($request->query('page', 1));
         $perPage = intval($request->query('perPage', 5));
@@ -70,7 +70,7 @@ class WallpaperApiController extends Controller
 
     public function detail(int $id): WallpaperDetailResource
     {
-        $wallpaper = Wallpaper::with('users')->find($id);
+        $wallpaper = Wallpaper::with(['category','users'])->find(id: $id);
         $this->dataNotFound($wallpaper);
         return new WallpaperDetailResource($wallpaper);
     }
@@ -89,5 +89,20 @@ class WallpaperApiController extends Controller
         $user = User::find($userId);
         return new WallpaperOwnerResource($user);
     }
+
+    public function searchWallpaper(Request $request, $keyword): WallpapersWithPagingCollection
+    {
+        $page = intval($request->query('page', 1));
+        $perPage = intval($request->query('perPage', 5));
+        $wallpapersQuery = Wallpaper::query();
+        $wallpapersQuery->where('title', 'LIKE', '%' . $keyword . '%')
+            ->orWhereHas('tags', function ($query) use ($keyword) {
+                $query->where('name', 'LIKE', '%' . $keyword . '%');
+            });
+        $wallpapers = $wallpapersQuery->latest()->paginate($perPage, ['*'], 'page', $page);
+        $this->dataNotFound($wallpapers);
+        return new WallpapersWithPagingCollection($wallpapers);
+    }
+
 
 }
