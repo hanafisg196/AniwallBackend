@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\WallpapersWithPagingCollection;
+use App\Http\Resources\WallpapersSlidePagingCollection;
 use App\Models\Slide;
 use App\Models\Wallpaper;
 use Illuminate\Http\Request;
@@ -32,15 +32,16 @@ class SlideApiController extends Controller
         ]);
     }
 
-    public function slideWallpapers(Request $request, $slideId)
+    public function slideWallpapers(Request $request, $slideId): WallpapersSlidePagingCollection
     {
         $page = intval($request->query('page', 1));
         $perPage = intval($request->query('perPage', default: 5));
-        $wallpapers = Wallpaper::where('slide_id', $slideId)
-           ->where('review', '=', 0)
+        $wallpapers = Wallpaper::with('slides')
+            ->where('slide_id', $slideId)
+            ->where('review', '=', 0)
             ->latest()
             ->paginate($perPage, ['*'], 'page', $page);
         $this->dataNotFound($wallpapers);
-        return new WallpapersWithPagingCollection($wallpapers);
+        return new WallpapersSlidePagingCollection($wallpapers);
     }
 }

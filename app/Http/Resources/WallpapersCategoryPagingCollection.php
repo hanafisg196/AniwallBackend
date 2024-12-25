@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class WallpapersWithPagingCollection extends ResourceCollection
+class WallpapersCategoryPagingCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -14,7 +14,6 @@ class WallpapersWithPagingCollection extends ResourceCollection
      */
     public function toArray(Request $request): array
     {
-        // Format response yang sesuai dengan ekspektasi
         return [
             'total' => $this->total(),
             'per_page' => $this->perPage(),
@@ -22,7 +21,8 @@ class WallpapersWithPagingCollection extends ResourceCollection
             'last_page' => $this->lastPage(),
             'from' => $this->firstItem(),
             'to' => $this->lastItem(),
-            'data' => WallpaperResource::collection($this->collection)
+            'data' => WallpaperResource::collection($this->collection),
+            'category_name' => $this->collection->pluck('category.name')->first(),
         ];
     }
 }

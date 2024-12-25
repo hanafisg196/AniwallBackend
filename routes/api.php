@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::middleware(ApiAuthMiddleware::class)->group(function () {
+Route::middleware(ApiAuthMiddleware::class)->group(callback: function () {
     Route::get('/ads', [AdsController::class, 'getAds']);
     Route::get('/wallpaper/test', [WallpaperApiController::class, 'test']);
     Route::get('/wallpaper/latest', [WallpaperApiController::class, 'latest']);

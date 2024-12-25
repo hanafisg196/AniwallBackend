@@ -3,13 +3,30 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\WallpapersCategoryPagingCollection;
+use App\Http\Resources\WallpapersWithPagingCollection;
 use App\Models\Category;
 use App\Models\Wallpaper;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
 
 class CategoryApiController extends Controller
 {
 
+    private function dataNotFound($data)
+    {
+        if ($data->isEmpty()) {
+            throw new HttpResponseException(
+                response()
+                    ->json([
+                        'errors' => [
+                            'message' => 'wallpaper not found',
+                        ],
+                    ])
+                    ->setStatusCode(404),
+            );
+        }
+    }
     public function categories(Request $request)
     {
         $page = intval($request->query('page', 1));
@@ -17,7 +34,7 @@ class CategoryApiController extends Controller
 
         $categories = Category::latest()
                     ->paginate($perPage, ['*'], 'page', $page);
-
+                    $this->dataNotFound($categories);
         return response()->json([
             'data' => $categories->items(),
             [
@@ -31,26 +48,16 @@ class CategoryApiController extends Controller
         ]);
     }
 
-    public function wallpapersByCat(Request $request, int $id) {
+    public function wallpapersByCat(Request $request, int $id): WallpapersCategoryPagingCollection {
 
         $page = intval($request->query('page', 1));
         $perPage = intval($request->query('perPage', 5));
-
-        $wallpapers = Wallpaper::where('cat_id', $id)
+        $wallpapers = Wallpaper::with('category')
+                     ->where('cat_id', $id)
                      ->where('review', '=', 0)
                      ->paginate($perPage, ['*'], 'page', $page);
-
-        return response()->json([
-            'data' => $wallpapers->items(),
-            [
-                'total' => $wallpapers->total(),
-                'per_page' => $wallpapers->perPage(),
-                'current_page' => $wallpapers->currentPage(),
-                'last_page' => $wallpapers->lastPage(),
-                'from' => $wallpapers->firstItem(),
-                'to' => $wallpapers->lastItem()
-            ]
-        ]);
+        $this->dataNotFound($wallpapers);
+         return new WallpapersCategoryPagingCollection($wallpapers);
 
 
     }

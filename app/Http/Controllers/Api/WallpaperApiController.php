@@ -48,7 +48,7 @@ class WallpaperApiController extends Controller
         return new WallpapersWithPagingCollection($wallpapers);
     }
 
-    public function popular(Request $request)
+    public function popular(Request $request): WallpapersWithPagingCollection
     {
         $page = intval($request->query('page', 1));
         $perPage = intval($request->query('perPage', 5));
@@ -70,12 +70,12 @@ class WallpaperApiController extends Controller
 
     public function detail(int $id): WallpaperDetailResource
     {
-        $wallpaper = Wallpaper::with(['category','users'])->find(id: $id);
+        $wallpaper = Wallpaper::with(['category','users'])->find( $id);
         $this->dataNotFound($wallpaper);
         return new WallpaperDetailResource($wallpaper);
     }
 
-    public function wallpaperUserDetail(Request $request, $userId){
+    public function wallpaperUserDetail(Request $request, $userId): WallpapersWithPagingCollection{
         $page = intval($request->query('page', 1));
         $perPage = intval($request->query('perPage', 5));
         $wallpapers = Wallpaper::where('user_id', $userId)
