@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CategoryCollection;
+use App\Http\Resources\CategoryResource;
 use App\Http\Resources\WallpapersCategoryPagingCollection;
 use App\Http\Resources\WallpapersWithPagingCollection;
 use App\Models\Category;
@@ -20,12 +22,17 @@ class CategoryApiController extends Controller
                 response()
                     ->json([
                         'errors' => [
-                            'message' => 'wallpaper not found',
+                            'message' => 'Category not found',
                         ],
                     ])
                     ->setStatusCode(404),
             );
         }
+    }
+
+    public function categoryDetail($catId): CategoryResource{
+       $category = Category::find($catId);
+       return new CategoryResource($category);
     }
     public function categories(Request $request)
     {
@@ -48,7 +55,7 @@ class CategoryApiController extends Controller
         ]);
     }
 
-    public function wallpapersByCat(Request $request, int $id): WallpapersCategoryPagingCollection {
+    public function wallpapersByCat(Request $request, int $id): WallpapersWithPagingCollection {
 
         $page = intval($request->query('page', 1));
         $perPage = intval($request->query('perPage', 5));
@@ -57,8 +64,9 @@ class CategoryApiController extends Controller
                      ->where('review', '=', 0)
                      ->paginate($perPage, ['*'], 'page', $page);
         $this->dataNotFound($wallpapers);
-         return new WallpapersCategoryPagingCollection($wallpapers);
-
+         return new WallpapersWithPagingCollection($wallpapers);
 
     }
+
+
 }
