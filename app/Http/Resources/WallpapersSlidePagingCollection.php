@@ -22,7 +22,7 @@ class WallpapersSlidePagingCollection extends ResourceCollection
             'from' => $this->firstItem(),
             'to' => $this->lastItem(),
             'data' => WallpaperResource::collection($this->collection),
-            'slide' => $this->collection->pluck('slides.name')->first()
+            'slide_name' => $this->collection->pluck('slides.name')->first()
         ];
     }
 }
