@@ -151,7 +151,14 @@
                     <div class="mb-1">
                         <label for="intestial_click">Interstitial Click</label>
                         <input type="text" class="form-control" id="intestial_click" name="intestial_click"
-                               value="{{$data->intestial_click}}">
+                               value="{{$data->interstitial_click}}">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-1">
+                        <label for="intestial_click">Refresh</label>
+                        <input type="text" class="form-control" id="intestial_click" name="intestial_click"
+                         value="{{$data->refresh_stat == true ? 'true' : 'false'}}">
                     </div>
                 </div>
                 <div class="col-md-12">

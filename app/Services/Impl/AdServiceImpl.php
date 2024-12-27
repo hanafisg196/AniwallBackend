@@ -23,6 +23,7 @@ class AdServiceImpl implements AdService{
           'admob_native' => 'required|string',
           'intestial_click' => 'required|numeric',
           'native_item' => 'required|string',
+          'refresh_stat' => 'required',
 
         ]);
 

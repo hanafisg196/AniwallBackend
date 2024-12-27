@@ -14,6 +14,7 @@ class AdsResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+
         return [
             'admob_app_id' => $this->admob_app_id,
             'admob_banner' => $this->admob_banner,
@@ -22,7 +23,10 @@ class AdsResource extends JsonResource
             'admob_open' => $this->admob_open,
             'admob_reward' => $this->admob_reward,
             'interstitial_click' => $this->interstitial_click,
-            'native_item' => $this->native_item
+            'native_item' => $this->native_item,
+            'refresh_stat' => $this->refresh_stat
         ];
+
+
     }
 }

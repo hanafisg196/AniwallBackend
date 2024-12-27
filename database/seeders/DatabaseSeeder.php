@@ -43,8 +43,9 @@ class DatabaseSeeder extends Seeder
             'admob_interstitial'=> 'ca-app-pub-3940256099942544/1033173712',
             'admob_open' => 'ca-app-pub-3940256099942544/9257395921',
             'admob_reward' => 'ca-app-pub-3940256099942544/5224354917',
-            'interstitial_click' => 1,
-            'native_item' => 4
+            'interstitial_click' => 4,
+            'native_item' => 4,
+            'refresh_stat' => true
        ]);
 
     }
