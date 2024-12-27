@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\SlideResource;
 use App\Http\Resources\WallpapersWithPagingCollection;
 use App\Models\Slide;
 use App\Models\Wallpaper;
@@ -43,5 +44,10 @@ class SlideApiController extends Controller
             ->paginate($perPage, ['*'], 'page', $page);
         $this->dataNotFound($wallpapers);
         return new WallpapersWithPagingCollection($wallpapers);
+    }
+
+    public function slideDetail($slideId){
+        $slide = Slide::where('id', $slideId)->first();
+        return new SlideResource($slide);
     }
 }
