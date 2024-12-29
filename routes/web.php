@@ -60,8 +60,10 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::get('/adsmanager', [AdsmanagerController::class, 'index'] );
     Route::post('/adsmanager/update', [AdsmanagerController::class, 'update'] );
     Route::get('/setting', [SettingController::class, 'index'] );
+    Route::post('/setting/{id}', [SettingController::class, 'update'] )->name('update.setting');
     Route::get('/appsetting', [AppsettingController::class, 'index'] );
     Route::post('/appsetting/update', [AppsettingController::class, 'update'] );
     Route::get('/users', [UserController::class, 'index'] )->name('users');
     Route::get('/report', [ReportController::class, 'index'] )->name('report');
+
 });

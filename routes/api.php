@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\WallpaperApiController;
 use App\Http\Controllers\Api\UserApiController;
 use App\Http\Middleware\ApiAuthMiddleware;
 use App\Http\Middleware\AuthenticateUser;
+use App\Http\Controllers\Api\SettingController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -26,6 +27,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(ApiAuthMiddleware::class)->group(callback: function () {
     Route::get('/ads', [AdsController::class, 'getAds']);
     Route::get('/wallpaper/test', [WallpaperApiController::class, 'test']);
+    Route::get('/setting', [SettingController::class, 'settingDetail']);
     Route::get('/wallpaper/latest', [WallpaperApiController::class, 'latest']);
     Route::get('/wallpaper/popular', [WallpaperApiController::class, 'popular']);
     Route::get('/wallpaper/detail/{id}', [WallpaperApiController::class, 'detail']);

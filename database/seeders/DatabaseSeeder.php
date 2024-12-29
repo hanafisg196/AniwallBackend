@@ -5,7 +5,9 @@ namespace Database\Seeders;
 use App\Models\Ads;
 use App\Models\AppSettings;
 use App\Models\Category;
+use App\Models\Settings;
 use App\Models\User;
+use Google\Service\Calendar\Setting;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 class DatabaseSeeder extends Seeder
@@ -47,6 +49,15 @@ class DatabaseSeeder extends Seeder
             'native_item' => 4,
             'refresh_stat' => true
        ]);
+
+      Settings::create([
+        'privacy_police' => 'https://developers.google.com/admob/android/test-ads?hl=id',
+        'term_service' => 'https://developers.google.com/admob/android/test-ads?hl=id',
+        'developer' => 'Anisuki Studio',
+        'email' => 'anisukidev01@gmail.com',
+        'website' => 'anisuki.com',
+        'app_version' => '1.0',
+      ]);
 
     }
 }

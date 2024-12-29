@@ -3,58 +3,57 @@
 
 <div class="card">
     <div class="card-body">
-       
-        <form class="auth-login-form mt-2" action="/appsetting/update" method="post">
+
+        <form class="auth-login-form mt-2" action="{{route('update.setting', $settings->id)}}" method="post">
              @csrf
             <div class="row">
                 <div class="col-md-6">
                     <div class="mb-1">
-                        <label for="onesignal_id">FCM Server Key</label>
-                        <input type="text" class="form-control" id="onesignal_id" name="onesignal_id"
-                               value="">
+                        <label for="privacy_police">Privacy Police</label>
+                        <input type="text" class="form-control" id="privacy_police" name="privacy_police"
+                               value="{{$settings->privacy_police}}">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-1">
-                        <label for="onesignal_rest">FCM Notification Topic</label>
-                        <input type="text" class="form-control" id="onesignal_rest" name="onesignal_rest"
-                               value="">
+                        <label for="term_service">Term And Service</label>
+                        <input type="text" class="form-control" id="term_service" name="term_service"
+                        value="{{$settings->term_service}}">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-1">
-                        <label for="packagename">More Apps URL</label>
-                        <input type="text" class="form-control" id="packagename" name="packagename"
-                               value="">
+                        <label for="developer">Developer</label>
+                        <input type="text" class="form-control" id="developer" name="developer"
+                        value="{{$settings->developer}}">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-1">
-                        <label for="privacy">Privacy Police</label>
-                        <input type="text" class="form-control" id="privacy" name="privacy"
-                               value="">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" id="email" name="email"
+                        value="{{$settings->email}}">
                     </div>
                 </div>
-                {{-- <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="mb-1">
-                        <label for="server_key">Server Key</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control"
-                             aria-describedby="button-addon2" id="server_key" name="server_key" value=""/>
-                            <button class="btn btn-outline-primary" id="button-addon2" 
-                            type="button" onclick="generate_server_key()">GENERATE</button>
-                        </div>
+                        <label for="website">Website</label>
+                        <input type="text" class="form-control" id="website" name="website"
+                        value="{{$settings->website}}">
                     </div>
-                </div> --}}
-                
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-1">
+                        <label for="app_version">App Version</label>
+                        <input type="text" class="form-control" id="app_version" name="app_version"
+                        value="{{$settings->app_version}}">
+                    </div>
+                </div>
                     <div class="col-md-12">
-                        <button type="button"
-                                data-bs-toggle="tooltip"
-                                data-bs-placement="top"
-                                title="Disable On Demo"
-                                class="btn btn-gradient-primary float-end">Submit</button>
+                        <button type="submit" title="Disable On Demo"
+                          class="btn btn-gradient-primary float-end">Submit</button>
                     </div>
-              
+
             </div>
         </form>
     </div>

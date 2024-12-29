@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
+            $table->string("privacy_police");
+            $table->string("term_service");
+            $table->string("developer");
+            $table->string("email");
+            $table->string("website");
+            $table->string("app_version");
             $table->timestamps();
         });
     }
