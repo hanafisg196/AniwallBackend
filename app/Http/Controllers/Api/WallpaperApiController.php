@@ -86,7 +86,7 @@ class WallpaperApiController extends Controller
     }
 
     public function wallpapersOwner($userId):WallpaperOwnerResource{
-        $user = User::find($userId);
+        $user = User::with('wallpapers')->find($userId);
         return new WallpaperOwnerResource($user);
     }
 

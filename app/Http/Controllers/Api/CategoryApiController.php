@@ -61,8 +61,8 @@ class CategoryApiController extends Controller
         $perPage = intval($request->query('perPage', 5));
         $wallpapers = Wallpaper::with('category')
                      ->where('cat_id', $id)
-                     ->where('review', '=', 0)
-                     ->paginate($perPage, ['*'], 'page', $page);
+                     ->orWhere('review', '=', 0)
+                     ->latest()->paginate($perPage, ['*'], 'page', $page);
         $this->dataNotFound($wallpapers);
          return new WallpapersWithPagingCollection($wallpapers);
 

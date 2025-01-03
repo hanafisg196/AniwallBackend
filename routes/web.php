@@ -39,7 +39,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::get('/dashboard', [DasboardController::class, 'index'] )->name('dashboard');
     Route::post('/logout', [LoginController::class, 'doLogout'] );
     Route::get('/categories', [CategoryController::class, 'index'] );
-    Route::post('/categories/insert', [CategoryController::class, 'addCategory'] );
+    Route::post('/categories/insert', [CategoryController::class, 'uploadWallpaper'] );
     Route::post('/categories/edit/{id}', [CategoryController::class, 'UpdateCategory'] );
     Route::post('/categories/delete/{id}', [CategoryController::class, 'deleteCategory'] );
     Route::get('/wallpaper', [WallpaperController::class, 'index'] );

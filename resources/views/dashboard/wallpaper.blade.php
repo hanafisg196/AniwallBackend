@@ -24,7 +24,7 @@
                     data-bs-target="#addModal"><span><i data-feather='plus'></i> Add Wallpaper</span></button>
             </div>
         </div>
-        
+
     </div>
     <div class="card-body mt-2">
         <div class="row">
@@ -43,7 +43,7 @@
                                  href="/wallpaper/view/{{ $item->id }}">
                                 <span><i data-feather='edit-2'></i></span>
                             </a>
-                           
+
                             <form action="/wallpaper/delete/{{ $item->id }}" method="post">
                                 @csrf
                             <button type="submit" class="btn btn-icon btn-danger
@@ -53,7 +53,7 @@
                             <span><i data-feather='trash-2'></i></span>
                             </button>
                            </form>
-                          
+
                             <a type="button" href=""
                                 class="btn btn-icon btn-primary waves-effect waves-float waves-light">
                                 <span><i data-feather='bell'></i></span>
@@ -63,12 +63,12 @@
                                 <span><i data-feather='video'></i></span>
                             </a>
                              @endif
-                          
+
                         </div>
                     </div>
-                    
+
                 </div>
-              
+
             </div>
             @endforeach
         </div>
@@ -101,7 +101,7 @@
 
                         <div class="col-md-12">
                             <div class="row">
-                                
+
                                 <div class="col-md-4">
                                     <div class="mb-1">
                                         <label for="cat_id">Category</label>
@@ -112,40 +112,40 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                 
+
                                 </div>
                             </div>
-                           
+
                             <div class="mb-1" id="type">
                                 <label for="type" id="wallpaper_file_label_id">Wallpaper</label>
                                 <input class="form-control"  name="type" id="type" type="file" multiple>
                             </div>
-                        
+
                             <div class="mb-3" id="tags" style="display: block">
                                 <label for="tags">Tags</label>
                                 <br>
                                 <input type="text" class="form-control" data-role="tagsinput" id="tags" name="tags">
                             </div>
-                         
+
                         </div>
                         <div class="mb-1">
                             <label class="form-label" for="slide">Slide : </label>
                             @foreach ($slide as $item)
                             <label class="color-label">
-                              
+
                                 <span class="color-label-checkbox">
                                     <input type="checkbox" id="slide_id" name="slide_id" value="{{ $item->id }}">
                                 </span><span class="color-label-text">{{ $item->name }}</span>
-                              
+
                             </label>
                              @endforeach
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    
+
                     <button class="btn btn-gradient-primary float-end" type="submit">Submit</button>
-                    
+
                 </div>
             </form>
         </div>

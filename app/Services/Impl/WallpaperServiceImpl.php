@@ -9,6 +9,7 @@ use App\Models\Slide;
 use App\Models\Wallpaper;
 use App\Services\WallpaperService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Spatie\Tags\Tag;
@@ -101,7 +102,7 @@ class WallpaperServiceImpl implements WallpaperService
                 'cat_id' => $cat_id,
                 'slide_id' => $slide_id,
                 'size'=> $size.'.mb',
-                'user_id' => auth()->user()->id
+                'user_id' => Auth::user()->id
 
             ]);
 
@@ -121,7 +122,7 @@ class WallpaperServiceImpl implements WallpaperService
                 'slide_id' => $slide_id,
                 'size'=> $size.'.mb',
                 'resolution' => $resolution,
-                'user_id' => auth()->user()->id
+                'user_id' => Auth::user()->id
 
             ]);
         }

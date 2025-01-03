@@ -15,4 +15,5 @@ interface WallpaperService
     public function deleteWallpaper($id);
     public function searchWallpaper(Request $request);
 
+
 }
