@@ -3,8 +3,10 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UploadWallpaperRequest;
 use App\Http\Resources\UploadWallpaperResource;
+use App\Http\Resources\WallpaperOwnerResource;
 use App\Http\Resources\WallpapersWithPagingCollection;
 use App\Jobs\GenerateThumbnailVideo;
+use App\Models\User;
 use App\Models\Wallpaper;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
@@ -64,14 +66,10 @@ class UserApiController extends Controller
             return $width . ' x ' . $height;
         }
     }
-    public function profile(Request $request)
-    {
-        $user = $this->user($request);
-        $posts = Wallpaper::where('user_id', $user->id)->count();
-        $user->posts = $posts;
-        return response()->json([
-            'user' => $user,
-        ]);
+    public function profile(Request $request, $userId): WallpaperOwnerResource
+    {   $this->user($request);
+        $user = User::with('wallpapers')->find($userId);
+        return new WallpaperOwnerResource($user);
     }
 
     public function uploadWallpaper(UploadWallpaperRequest $request): JsonResponse
