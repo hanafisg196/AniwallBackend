@@ -14,6 +14,6 @@ interface WallpaperService
     public function editWallpaper(Request $request, $id);
     public function deleteWallpaper($id);
     public function searchWallpaper(Request $request);
-
+    public function multipleUpload(Request $request);
 
 }

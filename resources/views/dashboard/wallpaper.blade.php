@@ -20,9 +20,13 @@
         </div>
         <div class="dt-action-buttons text-end">
             <div class="dt-buttons d-inline-flex">
-               <button type="button" class="btn btn-gradient-primary pull-right" data-bs-toggle="modal"
-                    data-bs-target="#addModal"><span><i data-feather='plus'></i> Add Wallpaper</span></button>
+               <a href="{{route('multiple.form')}}" class="btn btn-gradient-primary pull-right">
+                <span><i data-feather='plus'></i> Multiple Upload</span></a>
             </div>
+            <div class="dt-buttons d-inline-flex">
+                <button type="button" class="btn btn-gradient-primary pull-right" data-bs-toggle="modal"
+                     data-bs-target="#addModal"><span><i data-feather='plus'></i> Add Wallpaper</span></button>
+             </div>
         </div>
 
     </div>

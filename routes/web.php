@@ -43,6 +43,8 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::post('/categories/edit/{id}', [CategoryController::class, 'UpdateCategory'] );
     Route::post('/categories/delete/{id}', [CategoryController::class, 'deleteCategory'] );
     Route::get('/wallpaper', [WallpaperController::class, 'index'] );
+    Route::get('/multiple/form', [WallpaperController::class, 'multipleUploadForm'] )->name('multiple.form');
+    Route::post('/multiple/upload/', [WallpaperController::class, 'multipleUpload'] )->name('multiple.upload');
     Route::post('/wallpaper', [WallpaperController::class, 'addWallpaper'] );
     Route::get('/wallpaper/view/{id}', [WallpaperController::class, 'getDataById'] );
     Route::post('/wallpaper/edit/{id}', [WallpaperController::class, 'UpdateWallpaper'] );

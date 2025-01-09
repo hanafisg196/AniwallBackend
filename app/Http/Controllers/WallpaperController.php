@@ -88,4 +88,16 @@ class WallpaperController extends Controller
         ]);
     }
 
+    public function multipleUploadForm()
+    {
+        $categories = $this->wallpaperService->getCategories();
+        return view('dashboard.multiple-upload')->with('categories', $categories);
+    }
+
+    public function multipleUpload(Request $request)
+    {
+        $this->wallpaperService->multipleUpload($request);
+        return redirect('/wallpaper')->with('success', 'Wallpaper Update successfully');
+    }
+
 }

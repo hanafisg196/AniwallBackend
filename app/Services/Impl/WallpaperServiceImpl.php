@@ -85,9 +85,7 @@ class WallpaperServiceImpl implements WallpaperService
         $type = $request->file('type');
         $tags = explode(',', $request->tags);
         $size = $this->formateSize($type);
-        $resolution = $this->getResolution(
-           $type, $type->path()
-        );
+        $resolution = $this->getResolution( $type, $type->path());
 
 
         if ($type->getClientOriginalExtension() == 'mp4') {
@@ -218,6 +216,36 @@ class WallpaperServiceImpl implements WallpaperService
         });
         return $wallpaper->paginate(10);
 
+    }
+
+    public function multipleUpload(Request $request){
+        $validated = $request->validate([
+            'title' =>'required',
+            'type.*' =>'required|mimes:jpg,png|max:20480',
+            'cat_id' =>'required',
+        ]);
+        $wallpapers = [];
+        if($files = $request->file('type')){
+            foreach($files as $file){
+                $path = $file->store('images');
+                $resolution = $this->getResolution( $file, $file->path());
+                $size = $this->formateSize($file);
+                $thumbnailFilename = pathinfo($path, PATHINFO_FILENAME) . '.jpg';
+                $thumbnailPath = 'thumbs/' . $thumbnailFilename;
+                $this->createThumbnailImage($file->path(), storage_path('app/public/' . $thumbnailPath));
+                $wallpaper = new Wallpaper([
+                    'title' => $validated['title'],
+                    'thumbnail'=> $thumbnailPath,
+                    'type' => $path,
+                    'resolution' => $resolution,
+                    'cat_id' => $validated['cat_id'],
+                    'size'=> $size.'.mb',
+                    'user_id' => Auth::user()->id
+                ]);
+                $wallpaper->save();
+                $wallpapers [] = $wallpaper;
+            }
+        }
     }
 
 }
