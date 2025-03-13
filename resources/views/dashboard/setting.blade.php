@@ -3,8 +3,7 @@
 
 <div class="card">
     <div class="card-body">
-
-        <form class="auth-login-form mt-2" action="{{route('update.setting', $settings->id)}}" method="post">
+        <form class="auth-login-form mt-2" action="{{route('update.setting',$settings->id)}}" method="post">
              @csrf
             <div class="row">
                 <div class="col-md-6">

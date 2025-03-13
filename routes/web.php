@@ -67,5 +67,6 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::post('/appsetting/update', [AppsettingController::class, 'update'] );
     Route::get('/users', [UserController::class, 'index'] )->name('users');
     Route::get('/report', [ReportController::class, 'index'] )->name('report');
-
+    Route::post('/home/save_layout', [DasboardController::class, 'saveLayout'] );
+    Route::get('/home/get_layout', [DasboardController::class, 'getLayout']);
 });

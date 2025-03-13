@@ -32,11 +32,12 @@
                                     <td>{{ $item->email }}</td>
                                     <td>
                                         @if (!$item->avatar)
-                                        <img src="{{asset('plugins/app-assets/images/no-image.png')}}" alt="" class="rounded-circle"
-                                        alt="Profile Picture" style="width: 50px; height: 50px; object-fit: cover;">
+                                            <img src="{{ asset('plugins/app-assets/images/no-image.png') }}" alt=""
+                                                class="rounded-circle" alt="Profile Picture"
+                                                style="width: 50px; height: 50px; object-fit: cover;">
                                         @else
-                                        <img src="{{$item->avatar}}" alt="" class="rounded-circle"
-                                        alt="Profile Picture" style="width: 50px; height: 50px; object-fit: cover;">
+                                            <img src="{{ $item->avatar }}" alt="" class="rounded-circle"
+                                                alt="Profile Picture" style="width: 50px; height: 50px; object-fit: cover;">
                                         @endif
                                     </td>
                                     <td>Button</td>

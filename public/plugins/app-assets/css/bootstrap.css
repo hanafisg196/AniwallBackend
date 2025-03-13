@@ -93,7 +93,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   font-family: inherit;
   font-weight: 500;
   line-height: 1.2;
-  color: #5e5873; }
+  color: white; }
 
 h1, .h1 {
   font-size: calc(1.325rem + 0.9vw); }
@@ -1682,10 +1682,10 @@ progress {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.45;
-  color: #6e6b7b;
-  background-color: #fff;
+  color: #b9b9c3;
+  background-color: #283046;
   background-clip: padding-box;
-  border: 1px solid #d8d6de;
+  border: 1px solid #6e6b7b;
   appearance: none;
   border-radius: 0.357rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
@@ -1701,8 +1701,8 @@ progress {
   cursor: pointer; }
 
 .form-control:focus {
-  color: #6e6b7b;
-  background-color: #fff;
+  color: #b9b9c3;
+  background-color: #283046;
   border-color: #7367f0;
   outline: 0;
   box-shadow: 0 3px 10px 0 rgba(34, 41, 47, 0.1); }
@@ -3768,7 +3768,7 @@ fieldset:disabled .btn {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: #283046;
   background-clip: border-box;
   border: 0 solid rgba(34, 41, 47, 0.125);
   border-radius: 0.428rem; }
@@ -5773,7 +5773,7 @@ fieldset:disabled .btn {
   border-right: 0 !important; }
 
 .border-bottom {
-  border-bottom: 1px solid #ebe9f1 !important; }
+  border-bottom: 1px solid #404040 !important; }
 
 .border-bottom-0 {
   border-bottom: 0 !important; }

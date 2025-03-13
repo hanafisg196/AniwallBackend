@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/app-assets/tagsinput/tagsinput.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/app-assets/vendors/css/vendors.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/app-assets/vendors/css/tables/datatable/dataTables.bootstrap5.min.css')}}">
@@ -41,6 +41,8 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/assets/css/style.css') }}">
     <!-- END: Custom CSS-->
+
+    <link rel="stylesheet" type="text/css" href="/plugins/app-assets/data/locales/en.json">
 
 </head>
 

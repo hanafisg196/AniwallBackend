@@ -53,3 +53,24 @@
         }
     })
 </script>
+ <script>
+    $(document).ready(function () {
+    $.ajax({
+        url: "/home/get_layout",
+        method: "GET",
+        dataType: "json",
+        success: function (data) {
+            console.log("Current layout:", data.layout);
+            if (data.layout === "dark") {
+                $("body").addClass("dark");
+            } else {
+                $("body").removeClass("dark");
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error("Error fetching layout:", xhr.responseText);
+        }
+    });
+});
+
+ </script>
