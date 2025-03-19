@@ -83,7 +83,7 @@ class WallpaperServiceImpl implements WallpaperService
         $cat_id = $request->input('cat_id');
         $slide_id = $request->input('slide_id');
         $type = $request->file('type');
-        $tags = explode(',', $request->tags);
+        $tags = array_map('trim', explode(',', $request->tags));
         $size = $this->formateSize($type);
         $resolution = $this->getResolution( $type, $type->path());
 
@@ -125,8 +125,7 @@ class WallpaperServiceImpl implements WallpaperService
             ]);
         }
          $wallpaper->save();
-         $wallpaper->detachTags($tags);
-         $wallpaper->attachTags($tags);
+         $wallpaper->syncTags($tags);
 
 
         if ($type->getClientMimeType() == 'video/mp4') {
@@ -139,6 +138,7 @@ class WallpaperServiceImpl implements WallpaperService
     }
     public function editWallpaper(Request $request, $id)
     {
+        $tags = array_filter(explode(',', $request->tags));
         $wallpaper = Wallpaper::find($id);
         $title = $request->input('title');
         $cat_id = $request->input('cat_id');
@@ -176,10 +176,6 @@ class WallpaperServiceImpl implements WallpaperService
             $thumbPath = $wallpaper->thumbnail;
         }
 
-        $tags = explode(',', $request->input('tags'));
-        $wallpaper->detachTags($tags);
-        $wallpaper->attachTags($tags);
-
         $wallpaper->title = $title;
         $wallpaper->cat_id = $cat_id;
         $wallpaper->slide_id = $slide_id;
@@ -187,6 +183,9 @@ class WallpaperServiceImpl implements WallpaperService
         $wallpaper->resolution = $resolution;
         $wallpaper->type = $path;
         $wallpaper->update();
+        if (!empty($tags)) {
+            $wallpaper->attachTags($tags);
+        }
 
     }
     public function deleteWallpaper( $id)

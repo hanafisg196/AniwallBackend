@@ -29,6 +29,7 @@
 <script src="{{ asset('plugins/colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
 <script src="{{ asset('plugins/app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
 <script src="{{ asset('plugins/app-assets/tagsinput/tagsinput.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 <!-- END: Page Vendor JS-->
 
 <!-- BEGIN: Theme JS-->
