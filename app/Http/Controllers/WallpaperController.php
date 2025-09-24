@@ -100,4 +100,8 @@ class WallpaperController extends Controller
         return redirect('/wallpaper')->with('success', 'Wallpaper Update successfully');
     }
 
+    public function sendNotification(){
+
+    }
+
 }

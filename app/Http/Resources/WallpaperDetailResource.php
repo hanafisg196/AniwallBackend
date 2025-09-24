@@ -33,6 +33,10 @@ class WallpaperDetailResource extends JsonResource
                     'name' => $this->category->name,
                 ];
             }),
+            'tags' => $this->whenLoaded('tags', function () {
+                return $this->tags->map(fn($tag) => ['name' => $tag->name]);
+            }),
+
             'users' => $this->whenLoaded('users', function () {
                 return [
                     'id' => $this->users->id,

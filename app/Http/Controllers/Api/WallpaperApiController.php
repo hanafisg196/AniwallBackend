@@ -70,7 +70,7 @@ class WallpaperApiController extends Controller
 
     public function detail(int $id): WallpaperDetailResource
     {
-        $wallpaper = Wallpaper::with(['category','users'])->find( $id);
+        $wallpaper = Wallpaper::with(['category','users','tags'])->find( $id);
         $this->dataNotFound($wallpaper);
         return new WallpaperDetailResource($wallpaper);
     }
